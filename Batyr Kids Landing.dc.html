@@ -121,7 +121,7 @@
         </div>
       </div>
       <div style="position:relative">
-        <image-slot id="hero-photo" shape="rounded" radius="32" placeholder="Фото игровой комнаты Batyr Kids" style="width:100%;height:420px;box-shadow:0 30px 60px rgba(6,69,205,.20)"></image-slot>
+        <image-slot id="hero-photo" src="assets/hero_playroom.jpg" shape="rounded" radius="32" placeholder="Фото игровой комнаты Batyr Kids" style="width:100%;height:420px;box-shadow:0 30px 60px rgba(6,69,205,.20)"></image-slot>
         <div style="position:absolute;bottom:-22px;left:-22px;background:#fff;border-radius:20px;padding:16px 20px;box-shadow:0 16px 30px rgba(6,69,205,.18);display:flex;align-items:center;gap:12px">
           <div style="width:46px;height:46px;border-radius:50%;background:#EAF2FF;display:flex;align-items:center;justify-content:center;flex:none">
             <svg style="width:24px;height:24px;color:#0645CD"><use href="#icon-camera"></use></svg>
@@ -213,7 +213,7 @@
       <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px">
         <sc-for list="{{ gallery }}" as="item" hint-placeholder-count="6">
           <div>
-            <image-slot id="{{ item.id }}" shape="rounded" radius="20" placeholder="{{ item.caption }}" style="width:100%;height:220px"></image-slot>
+            <image-slot id="{{ item.id }}" src="{{ item.src }}" shape="rounded" radius="20" placeholder="{{ item.caption }}" style="width:100%;height:220px"></image-slot>
             <div style="font:700 13.5px 'Nunito',sans-serif;color:#5B6688;margin-top:10px;text-align:center">{{ item.caption }}</div>
           </div>
         </sc-for>
@@ -230,7 +230,7 @@
       <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:24px">
         <sc-for list="{{ teachers }}" as="item" hint-placeholder-count="4">
           <div style="text-align:center">
-            <image-slot id="{{ item.id }}" shape="circle" placeholder="Фото" style="width:120px;height:120px;margin:0 auto"></image-slot>
+            <image-slot id="{{ item.id }}" src="{{ item.src }}" shape="circle" placeholder="Фото" style="width:120px;height:120px;margin:0 auto"></image-slot>
             <div style="font:700 16px 'Nunito',sans-serif;color:#0645CD;margin-top:16px">{{ item.role }}</div>
             <div style="font:600 13.5px 'Nunito',sans-serif;color:#5B6688;margin-top:4px">{{ item.note }}</div>
           </div>
@@ -249,9 +249,9 @@
       <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:24px">
         <sc-for list="{{ testimonials }}" as="item" hint-placeholder-count="3">
           <div style="border:2px dashed #D8CBAA;border-radius:24px;padding:28px;background:#FDF6EA">
-            <image-slot id="{{ item.id }}" shape="circle" placeholder="Фото родителя" style="width:56px;height:56px"></image-slot>
-            <p style="font:italic 500 15px/1.6 'Nunito',sans-serif;color:#5B6688;margin:18px 0 0">«Здесь появится отзыв родителя»</p>
-            <div style="font:800 14px 'Nunito',sans-serif;color:#0645CD;margin-top:14px">Имя родителя</div>
+            <image-slot id="{{ item.id }}" src="{{ item.src }}" shape="circle" placeholder="Фото родителя" style="width:56px;height:56px"></image-slot>
+            <p style="font:italic 500 15px/1.6 'Nunito',sans-serif;color:#5B6688;margin:18px 0 0">«{{ item.text }}»</p>
+            <div style="font:800 14px 'Nunito',sans-serif;color:#0645CD;margin-top:14px">{{ item.name }}</div>
           </div>
         </sc-for>
       </div>
@@ -488,22 +488,26 @@ class Component extends DCLogic {
     const schedule = scheduleRaw.map(([time, activity], i) => ({ time, activity, rowBg: i % 2 === 0 ? '#FDF6EA' : 'transparent' }));
 
     const gallery = [
-      { id: 'gallery-1', caption: 'Игровая комната' },
-      { id: 'gallery-2', caption: 'Учебный класс' },
-      { id: 'gallery-3', caption: 'Творческая мастерская' },
-      { id: 'gallery-4', caption: 'Спальня' },
-      { id: 'gallery-5', caption: 'Прогулочная площадка' },
-      { id: 'gallery-6', caption: 'Общая зона' },
+      { id: 'gallery-1', caption: 'Игровая комната', src: 'assets/gallery_playroom.jpg' },
+      { id: 'gallery-2', caption: 'Учебный класс', src: 'assets/gallery_classroom.jpg' },
+      { id: 'gallery-3', caption: 'Творческая мастерская', src: 'assets/gallery_workshop.jpg' },
+      { id: 'gallery-4', caption: 'Спальня', src: 'assets/gallery_bedroom.jpg' },
+      { id: 'gallery-5', caption: 'Прогулочная площадка', src: 'assets/gallery_playground.jpg' },
+      { id: 'gallery-6', caption: 'Общая зона', src: 'assets/gallery_lobby.jpg' },
     ];
 
     const teachers = [
-      { id: 'teacher-1', role: '«Тілге саяхат»', note: 'Казахский язык через игру и творчество' },
-      { id: 'teacher-2', role: 'English Teacher', note: 'Носитель английского языка' },
-      { id: 'teacher-3', role: 'Логопед', note: 'Постановка и развитие речи' },
-      { id: 'teacher-4', role: 'Хореограф', note: 'Музыка, ритм и танец' },
+      { id: 'teacher-1', role: '«Тілге саяхат»', note: 'Казахский язык через игру и творчество', src: 'assets/teacher_kazakh.jpg' },
+      { id: 'teacher-2', role: 'English Teacher', note: 'Носитель английского языка', src: 'assets/teacher_english.jpg' },
+      { id: 'teacher-3', role: 'Логопед', note: 'Постановка и развитие речи', src: 'assets/teacher_speech.jpg' },
+      { id: 'teacher-4', role: 'Хореограф', note: 'Музыка, ритм и танец', src: 'assets/teacher_dance.jpg' },
     ];
 
-    const testimonials = [{ id: 'testimonial-1' }, { id: 'testimonial-2' }, { id: 'testimonial-3' }];
+    const testimonials = [
+      { id: 'testimonial-1', name: 'Айгерим (мама Алихана)', text: 'Очень довольна садиком! Сын с радостью идет каждое утро. Программа «Тілге саяхат» действительно работает — он стал говорить простые фразы на казахском дома. Рекомендую!', src: 'assets/parent_1.jpg' },
+      { id: 'testimonial-2', name: 'Данияр (папа Аружан)', text: 'Отличные преподаватели английского языка и внимательные воспитатели. Видеонаблюдение дает полное спокойствие в течение дня. Чистый и уютный сад.', src: 'assets/parent_2.jpg' },
+      { id: 'testimonial-3', name: 'Мадина (мама Нурали)', text: 'Занятия с логопедом и логоритмика очень помогли сыну с речью. Хореография тоже отличная. Садик современный, теплый, в ЖК Grand Victoria 2, нам очень удобно ходить.', src: 'assets/parent_3.jpg' },
+    ];
 
     const pricingFeatures = [
       '5-разовое питание',
