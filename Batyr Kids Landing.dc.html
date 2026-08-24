@@ -1,407 +1,681 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<script src="./support.js"></script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="./support.js"></script>
 </head>
+
 <body>
-<x-dc>
-<helmet>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="icon" href="assets/logo.png">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
-<script src="./image-slot.js"></script>
-<style>
-  html { scroll-behavior: smooth; }
-  * { box-sizing: border-box; }
-  body { margin: 0; font-family: 'Nunito', sans-serif; background: #FDF6EA; color: #2B3352; -webkit-font-smoothing: antialiased; }
-  a { color: #0645CD; text-decoration: none; }
-  a:hover { color: #F2A900; }
-  input, select { font-family: 'Nunito', sans-serif; }
-  @keyframes floatY { 0%,100% { transform: translateY(0px); } 50% { transform: translateY(-14px); } }
-  @keyframes floatY2 { 0%,100% { transform: translateY(0px); } 50% { transform: translateY(-20px); } }
-  @keyframes spinSlow { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
-  [data-nav-toggle] { display: none; }
-  @media (max-width: 900px) {
-    [data-nav-desktop] { display: none !important; }
-    [data-nav-toggle] { display: flex !important; }
-  }
-</style>
-</helmet>
+  <x-dc>
+    <helmet>
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <link rel="icon" href="assets/logo.png">
+      <link rel="preconnect" href="https://fonts.googleapis.com">
+      <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap"
+        rel="stylesheet">
+      <script src="./image-slot.js"></script>
+      <style>
+        html {
+          scroll-behavior: smooth;
+        }
 
-<svg style="position:absolute;width:0;height:0;overflow:hidden" aria-hidden="true">
-<defs>
-<symbol id="icon-heart" viewBox="0 0 24 24"><path d="M12 20s-7-4.35-9.5-8.5C1 8.5 2 5 5.5 4.5 8 4.1 10 5.8 12 8c2-2.2 4-3.9 6.5-3.5C22 5 23 8.5 21.5 11.5 19 15.65 12 20 12 20z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></symbol>
-<symbol id="icon-star" viewBox="0 0 24 24"><path d="M12 2l2.9 6.26 6.9.6-5.2 4.6 1.6 6.79L12 16.9l-6.2 3.35 1.6-6.79-5.2-4.6 6.9-.6L12 2z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></symbol>
-<symbol id="icon-leaf" viewBox="0 0 24 24"><path d="M4 21c9-1 15-7 16-16-9 1-15 7-16 16z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path><path d="M6 19c3-4 7-8 12-13" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path></symbol>
-<symbol id="icon-smile" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.8"></circle><circle cx="9" cy="10" r="1.1" fill="currentColor"></circle><circle cx="15" cy="10" r="1.1" fill="currentColor"></circle><path d="M8 14c1.5 2 6.5 2 8 0" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path></symbol>
-<symbol id="icon-lang" viewBox="0 0 24 24"><path d="M4 5h13a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H10l-3.5 3.5V15H4a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"></path><path d="M18.5 3.5l.6 1.4 1.4.6-1.4.6-.6 1.4-.6-1.4-1.4-.6 1.4-.6z" fill="currentColor"></path></symbol>
-<symbol id="icon-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.8"></circle><ellipse cx="12" cy="12" rx="4" ry="9" fill="none" stroke="currentColor" stroke-width="1.8"></ellipse><path d="M3 12h18" fill="none" stroke="currentColor" stroke-width="1.8"></path></symbol>
-<symbol id="icon-chat" viewBox="0 0 24 24"><path d="M4 5h16a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H9l-4 4v-4H4a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"></path></symbol>
-<symbol id="icon-note" viewBox="0 0 24 24"><path d="M9 18V5l10-2v13" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path><circle cx="7" cy="18" r="2.2" fill="none" stroke="currentColor" stroke-width="1.8"></circle><circle cx="17" cy="16" r="2.2" fill="none" stroke="currentColor" stroke-width="1.8"></circle></symbol>
-<symbol id="icon-pulse" viewBox="0 0 24 24"><path d="M3 13h2M7 8v8M11 4v16M15 9v6M19 11v2" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path></symbol>
-<symbol id="icon-camera" viewBox="0 0 24 24"><path d="M3 9a2 2 0 0 1 2-2h8l4-2.2v10.4l-4-2.2H5a2 2 0 0 1-2-2V9z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"></path><path d="M20 9v6" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"></path></symbol>
-<symbol id="icon-pin" viewBox="0 0 24 24"><path d="M12 21s-7-6.1-7-11a7 7 0 0 1 14 0c0 4.9-7 11-7 11z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"></path><circle cx="12" cy="10" r="2.4" fill="none" stroke="currentColor" stroke-width="1.8"></circle></symbol>
-<symbol id="icon-phone" viewBox="0 0 24 24"><path d="M6.6 10.8c1.4 2.8 3.8 5.2 6.6 6.6l2.2-2.2c.3-.3.7-.4 1.1-.3 1.2.4 2.5.6 3.8.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C11.4 21 3 12.6 3 3c0-.6.4-1 1-1h3.3c.6 0 1 .4 1 1 0 1.3.2 2.6.6 3.8.1.4 0 .8-.3 1.1L6.6 10.8z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></symbol>
-<symbol id="icon-message" viewBox="0 0 24 24"><path d="M4 5h16a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H9l-4 4v-4H4a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"></path><circle cx="8" cy="10.5" r="0.9" fill="currentColor"></circle><circle cx="12" cy="10.5" r="0.9" fill="currentColor"></circle><circle cx="16" cy="10.5" r="0.9" fill="currentColor"></circle></symbol>
-<symbol id="icon-chevron" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></symbol>
-<symbol id="icon-menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path></symbol>
-<symbol id="icon-close" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path></symbol>
-<symbol id="icon-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.8"></circle><path d="M12 7v5l4 2" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></symbol>
-<symbol id="icon-check" viewBox="0 0 24 24"><path d="M5 13l4 4 10-10" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"></path></symbol>
-</defs>
-</svg>
+        * {
+          box-sizing: border-box;
+        }
 
-<div style="position:relative;background:#0645CD;color:#FDF6EA;text-align:center;padding:11px 20px;font:800 13px/1.4 'Nunito',sans-serif;letter-spacing:.3px;display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap">
-  <svg style="width:16px;height:16px;color:#FEBA0C;flex:none"><use href="#icon-heart"></use></svg>
-  <span>{{ announceText }}</span>
-  <svg style="width:16px;height:16px;color:#FEBA0C;flex:none"><use href="#icon-heart"></use></svg>
-</div>
+        body {
+          margin: 0;
+          font-family: 'Nunito', sans-serif;
+          background: #FDF6EA;
+          color: #2B3352;
+          -webkit-font-smoothing: antialiased;
+        }
 
-<header style="position:sticky;top:0;z-index:40;background:rgba(253,246,234,0.92);backdrop-filter:blur(8px);border-bottom:1px solid #EEE3CC">
-  <div style="max-width:1240px;margin:0 auto;padding:14px 24px;display:flex;align-items:center;justify-content:space-between;gap:16px">
-    <a href="#top" style="display:flex;align-items:center;gap:10px;flex:none">
-      <img src="assets/logo.png" alt="Batyr Kids" style="width:48px;height:48px;border-radius:50%">
-      <span style="font:700 20px 'Nunito',sans-serif;color:#0645CD">Batyr Kids</span>
-    </a>
-    <nav data-nav-desktop style="display:flex;align-items:center;gap:26px">
-      <sc-for list="{{ navLinks }}" as="item" hint-placeholder-count="6">
-        <a href="{{ item.href }}" style="font:700 14px 'Nunito',sans-serif;color:#2B3352;white-space:nowrap">{{ item.label }}</a>
-      </sc-for>
-    </nav>
-    <a href="#contact-form" data-nav-desktop style="flex:none;background:#FEBA0C;color:#fff;font:800 14px 'Nunito',sans-serif;padding:12px 22px;border-radius:999px;box-shadow:0 8px 18px rgba(255,198,41,0.45)">Записаться</a>
-    <button data-nav-toggle onClick="{{ toggleMobileMenu }}" aria-label="Меню" style="align-items:center;justify-content:center;width:44px;height:44px;border-radius:12px;border:1px solid #E7DFCF;background:#fff;color:#0645CD;cursor:pointer;flex:none">
-      <svg style="width:22px;height:22px"><use href="{{ menuIconHref }}"></use></svg>
-    </button>
-  </div>
-  <sc-if value="{{ mobileMenuOpen }}" hint-placeholder-val="{{ false }}">
-    <div style="border-top:1px solid #EEE3CC;background:#FDF6EA;padding:8px 24px 20px;display:flex;flex-direction:column;gap:4px">
-      <sc-for list="{{ navLinks }}" as="item" hint-placeholder-count="6">
-        <a href="{{ item.href }}" onClick="{{ closeMobileMenu }}" style="font:700 15px 'Nunito',sans-serif;color:#2B3352;padding:12px 6px;border-bottom:1px solid #EEE3CC">{{ item.label }}</a>
-      </sc-for>
-      <a href="#contact-form" onClick="{{ closeMobileMenu }}" style="margin-top:12px;text-align:center;background:#FEBA0C;color:#fff;font:800 15px 'Nunito',sans-serif;padding:14px;border-radius:999px">Записаться</a>
-    </div>
-  </sc-if>
-</header>
+        a {
+          color: #0645CD;
+          text-decoration: none;
+        }
 
-<main id="top" style="overflow:hidden">
+        a:hover {
+          color: #F2A900;
+        }
 
-  <section data-screen-label="Hero" style="position:relative;padding:clamp(48px,8vw,96px) 24px 40px;overflow:hidden">
-    <div style="position:absolute;top:-60px;left:-80px;width:280px;height:280px;border-radius:50%;background:#0645CD;opacity:.06"></div>
-    <div style="position:absolute;bottom:-100px;right:-60px;width:320px;height:320px;border-radius:50%;background:#FEBA0C;opacity:.12"></div>
-    <div style="position:absolute;top:120px;right:6%;width:46px;height:60px;border-radius:50% 50% 50% 50%/60% 60% 40% 40%;background:radial-gradient(circle at 35% 30%,#4E86EE,#0645CD);animation:floatY 5s ease-in-out infinite;box-shadow:0 12px 20px rgba(6,69,205,.28)"></div>
-    <div style="position:absolute;top:80px;right:11%;width:38px;height:50px;border-radius:50% 50% 50% 50%/60% 60% 40% 40%;background:radial-gradient(circle at 35% 30%,#FFE18C,#F2A900);animation:floatY2 4.5s ease-in-out infinite .3s;box-shadow:0 10px 16px rgba(242,169,0,.25)"></div>
-    <svg style="position:absolute;top:60px;left:8%;width:26px;height:26px;color:#F2A900;animation:spinSlow 12s linear infinite"><use href="#icon-star"></use></svg>
-    <svg style="position:absolute;bottom:120px;left:4%;width:22px;height:22px;color:#0645CD;opacity:.5"><use href="#icon-heart"></use></svg>
+        input,
+        select {
+          font-family: 'Nunito', sans-serif;
+        }
 
-    <div style="position:relative;max-width:1240px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:48px;align-items:center">
-      <div>
-        <div style="display:inline-flex;align-items:center;gap:8px;background:#0645CD;color:#FEBA0C;font:800 13px 'Nunito',sans-serif;padding:9px 18px;border-radius:999px;letter-spacing:.3px">
-          <svg style="width:15px;height:15px"><use href="#icon-heart"></use></svg>
-          {{ heroBadgeText }}
-        </div>
-        <h1 style="font:800 clamp(38px,5.2vw,64px)/1.08 'Nunito',sans-serif;color:#0645CD;margin:22px 0 0;text-shadow:0 4px 0 #043496,0 8px 16px rgba(6,69,205,.28)">Место, где растут<br/>счастливые дети</h1>
-        <p style="font:500 18px/1.6 'Nunito',sans-serif;color:#5B6688;margin:22px 0 0;max-width:520px">Частный детский сад Batyr Kids в Астане: авторская программа казахского языка «Тілге саяхат», английский с носителем, логопед и хореограф — рядом с домом, в ЖК Grand Victoria 2.</p>
-        <div style="display:flex;gap:14px;flex-wrap:wrap;margin-top:32px">
-          <a href="#contact-form" style="background:#FEBA0C;color:#fff;font:800 16px 'Nunito',sans-serif;padding:16px 30px;border-radius:999px;box-shadow:0 10px 22px rgba(255,198,41,.45)">Записаться на встречу</a>
-          <a href="{{ telHref }}" style="display:flex;align-items:center;gap:10px;border:2px solid #0645CD;color:#0645CD;font:800 16px 'Nunito',sans-serif;padding:14px 26px;border-radius:999px">
-            <svg style="width:18px;height:18px"><use href="#icon-phone"></use></svg>
-            {{ ctaPhone }}
-          </a>
-        </div>
-        <div style="display:flex;gap:28px;flex-wrap:wrap;margin-top:40px">
-          <sc-for list="{{ trustItems }}" as="item" hint-placeholder-count="4">
-            <div style="display:flex;align-items:center;gap:9px">
-              <svg style="width:22px;height:22px;color:#0645CD;flex:none"><use href="{{ item.icon }}"></use></svg>
-              <span style="font:700 12.5px/1.3 'Nunito',sans-serif;color:#2B3352;max-width:100px">{{ item.label }}</span>
-            </div>
+        @keyframes floatY {
+
+          0%,
+          100% {
+            transform: translateY(0px);
+          }
+
+          50% {
+            transform: translateY(-14px);
+          }
+        }
+
+        @keyframes floatY2 {
+
+          0%,
+          100% {
+            transform: translateY(0px);
+          }
+
+          50% {
+            transform: translateY(-20px);
+          }
+        }
+
+        @keyframes spinSlow {
+          from {
+            transform: rotate(0deg);
+          }
+
+          to {
+            transform: rotate(360deg);
+          }
+        }
+
+        [data-nav-toggle] {
+          display: none;
+        }
+
+        @media (max-width: 900px) {
+          [data-nav-desktop] {
+            display: none !important;
+          }
+
+          [data-nav-toggle] {
+            display: flex !important;
+          }
+        }
+      </style>
+    </helmet>
+
+    <svg style="position:absolute;width:0;height:0;overflow:hidden" aria-hidden="true">
+      <defs>
+        <symbol id="icon-heart" viewBox="0 0 24 24">
+          <path
+            d="M12 20s-7-4.35-9.5-8.5C1 8.5 2 5 5.5 4.5 8 4.1 10 5.8 12 8c2-2.2 4-3.9 6.5-3.5C22 5 23 8.5 21.5 11.5 19 15.65 12 20 12 20z"
+            fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path>
+        </symbol>
+        <symbol id="icon-star" viewBox="0 0 24 24">
+          <path d="M12 2l2.9 6.26 6.9.6-5.2 4.6 1.6 6.79L12 16.9l-6.2 3.35 1.6-6.79-5.2-4.6 6.9-.6L12 2z" fill="none"
+            stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path>
+        </symbol>
+        <symbol id="icon-leaf" viewBox="0 0 24 24">
+          <path d="M4 21c9-1 15-7 16-16-9 1-15 7-16 16z" fill="none" stroke="currentColor" stroke-width="1.8"
+            stroke-linecap="round" stroke-linejoin="round"></path>
+          <path d="M6 19c3-4 7-8 12-13" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+          </path>
+        </symbol>
+        <symbol id="icon-smile" viewBox="0 0 24 24">
+          <circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.8"></circle>
+          <circle cx="9" cy="10" r="1.1" fill="currentColor"></circle>
+          <circle cx="15" cy="10" r="1.1" fill="currentColor"></circle>
+          <path d="M8 14c1.5 2 6.5 2 8 0" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+          </path>
+        </symbol>
+        <symbol id="icon-lang" viewBox="0 0 24 24">
+          <path d="M4 5h13a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H10l-3.5 3.5V15H4a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1z" fill="none"
+            stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"></path>
+          <path d="M18.5 3.5l.6 1.4 1.4.6-1.4.6-.6 1.4-.6-1.4-1.4-.6 1.4-.6z" fill="currentColor"></path>
+        </symbol>
+        <symbol id="icon-globe" viewBox="0 0 24 24">
+          <circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.8"></circle>
+          <ellipse cx="12" cy="12" rx="4" ry="9" fill="none" stroke="currentColor" stroke-width="1.8"></ellipse>
+          <path d="M3 12h18" fill="none" stroke="currentColor" stroke-width="1.8"></path>
+        </symbol>
+        <symbol id="icon-chat" viewBox="0 0 24 24">
+          <path d="M4 5h16a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H9l-4 4v-4H4a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1z" fill="none"
+            stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"></path>
+        </symbol>
+        <symbol id="icon-note" viewBox="0 0 24 24">
+          <path d="M9 18V5l10-2v13" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
+            stroke-linejoin="round"></path>
+          <circle cx="7" cy="18" r="2.2" fill="none" stroke="currentColor" stroke-width="1.8"></circle>
+          <circle cx="17" cy="16" r="2.2" fill="none" stroke="currentColor" stroke-width="1.8"></circle>
+        </symbol>
+        <symbol id="icon-pulse" viewBox="0 0 24 24">
+          <path d="M3 13h2M7 8v8M11 4v16M15 9v6M19 11v2" fill="none" stroke="currentColor" stroke-width="1.8"
+            stroke-linecap="round"></path>
+        </symbol>
+        <symbol id="icon-camera" viewBox="0 0 24 24">
+          <path d="M3 9a2 2 0 0 1 2-2h8l4-2.2v10.4l-4-2.2H5a2 2 0 0 1-2-2V9z" fill="none" stroke="currentColor"
+            stroke-width="1.7" stroke-linejoin="round"></path>
+          <path d="M20 9v6" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"></path>
+        </symbol>
+        <symbol id="icon-pin" viewBox="0 0 24 24">
+          <path d="M12 21s-7-6.1-7-11a7 7 0 0 1 14 0c0 4.9-7 11-7 11z" fill="none" stroke="currentColor"
+            stroke-width="1.8" stroke-linejoin="round"></path>
+          <circle cx="12" cy="10" r="2.4" fill="none" stroke="currentColor" stroke-width="1.8"></circle>
+        </symbol>
+        <symbol id="icon-phone" viewBox="0 0 24 24">
+          <path
+            d="M6.6 10.8c1.4 2.8 3.8 5.2 6.6 6.6l2.2-2.2c.3-.3.7-.4 1.1-.3 1.2.4 2.5.6 3.8.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C11.4 21 3 12.6 3 3c0-.6.4-1 1-1h3.3c.6 0 1 .4 1 1 0 1.3.2 2.6.6 3.8.1.4 0 .8-.3 1.1L6.6 10.8z"
+            fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path>
+        </symbol>
+        <symbol id="icon-message" viewBox="0 0 24 24">
+          <path d="M4 5h16a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H9l-4 4v-4H4a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1z" fill="none"
+            stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"></path>
+          <circle cx="8" cy="10.5" r="0.9" fill="currentColor"></circle>
+          <circle cx="12" cy="10.5" r="0.9" fill="currentColor"></circle>
+          <circle cx="16" cy="10.5" r="0.9" fill="currentColor"></circle>
+        </symbol>
+        <symbol id="icon-chevron" viewBox="0 0 24 24">
+          <path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+            stroke-linejoin="round"></path>
+        </symbol>
+        <symbol id="icon-menu" viewBox="0 0 24 24">
+          <path d="M4 7h16M4 12h16M4 17h16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+          </path>
+        </symbol>
+        <symbol id="icon-close" viewBox="0 0 24 24">
+          <path d="M6 6l12 12M18 6L6 18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+          </path>
+        </symbol>
+        <symbol id="icon-clock" viewBox="0 0 24 24">
+          <circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.8"></circle>
+          <path d="M12 7v5l4 2" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
+            stroke-linejoin="round"></path>
+        </symbol>
+        <symbol id="icon-check" viewBox="0 0 24 24">
+          <path d="M5 13l4 4 10-10" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"
+            stroke-linejoin="round"></path>
+        </symbol>
+      </defs>
+    </svg>
+
+
+
+    <header
+      style="position:sticky;top:0;z-index:40;background:rgba(253,246,234,0.92);backdrop-filter:blur(8px);border-bottom:1px solid #EEE3CC">
+      <div
+        style="max-width:1240px;margin:0 auto;padding:14px 24px;display:flex;align-items:center;justify-content:space-between;gap:16px">
+        <a href="#top" style="display:flex;align-items:center;gap:10px;flex:none">
+          <img src="assets/logo.png" alt="Batyr Kids" style="width:48px;height:48px;border-radius:50%">
+          <span style="font:700 20px 'Nunito',sans-serif;color:#0645CD">Batyr Kids</span>
+        </a>
+        <nav data-nav-desktop style="display:flex;align-items:center;gap:26px">
+          <sc-for list="{{ navLinks }}" as="item" hint-placeholder-count="6">
+            <a href="{{ item.href }}" style="font:700 14px 'Nunito',sans-serif;color:#2B3352;white-space:nowrap">{{
+              item.label }}</a>
           </sc-for>
-        </div>
+        </nav>
+        <a href="#contact-form" data-nav-desktop
+          style="flex:none;background:#FEBA0C;color:#fff;font:800 14px 'Nunito',sans-serif;padding:12px 22px;border-radius:999px;box-shadow:0 8px 18px rgba(255,198,41,0.45)">Записаться</a>
+        <button data-nav-toggle onClick="{{ toggleMobileMenu }}" aria-label="Меню"
+          style="align-items:center;justify-content:center;width:44px;height:44px;border-radius:12px;border:1px solid #E7DFCF;background:#fff;color:#0645CD;cursor:pointer;flex:none">
+          <svg style="width:22px;height:22px">
+            <use href="{{ menuIconHref }}"></use>
+          </svg>
+        </button>
       </div>
-      <div style="position:relative">
-        <image-slot id="hero-photo" src="assets/hero_playroom.jpg" shape="rounded" radius="32" placeholder="Фото игровой комнаты Batyr Kids" style="width:100%;height:420px;box-shadow:0 30px 60px rgba(6,69,205,.20)"></image-slot>
-        <div style="position:absolute;bottom:-22px;left:-22px;background:#fff;border-radius:20px;padding:16px 20px;box-shadow:0 16px 30px rgba(6,69,205,.18);display:flex;align-items:center;gap:12px">
-          <div style="width:46px;height:46px;border-radius:50%;background:#EAF2FF;display:flex;align-items:center;justify-content:center;flex:none">
-            <svg style="width:24px;height:24px;color:#0645CD"><use href="#icon-camera"></use></svg>
-          </div>
-          <div>
-            <div style="font:800 14px 'Nunito',sans-serif;color:#0645CD">Видеонаблюдение</div>
-            <div style="font:600 12px 'Nunito',sans-serif;color:#5B6688">24/7 на всей территории</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="about" data-screen-label="О садике" style="position:relative;padding:64px 24px;background:#fff">
-    <div style="max-width:1000px;margin:0 auto;text-align:center">
-      <div style="width:150px;height:150px;border-radius:50%;background:#FDF6EA;border:1px solid #EEE3CC;display:flex;flex-direction:column;align-items:center;justify-content:center;margin:0 auto 28px;gap:6px">
-        <svg style="width:40px;height:40px;color:#0645CD"><use href="#icon-heart"></use></svg>
-        <span style="font:800 12px/1.3 'Nunito',sans-serif;color:#0645CD;max-width:110px">МЕСТО ЛЮБВИ, ЗАБОТЫ И РАЗВИТИЯ</span>
-      </div>
-      <h2 style="font:700 clamp(28px,4vw,42px)/1.15 'Nunito',sans-serif;color:#0645CD;margin:0">Мы создаём счастливое детство для каждого ребёнка</h2>
-      <p style="font:500 17px/1.7 'Nunito',sans-serif;color:#5B6688;margin:20px auto 0;max-width:700px">Batyr Kids — частный детский сад в Астане, где казахский, английский и забота о каждом ребёнке встречаются в тёплом, безопасном пространстве. Мы бережно сопровождаем малышей от 1 до 5 лет: помогаем адаптироваться, развиваем речь, творчество и любовь к языкам через игру.</p>
-    </div>
-  </section>
-
-  <section id="programs" data-screen-label="Программы" style="padding:80px 24px">
-    <div style="max-width:1240px;margin:0 auto">
-      <div style="text-align:center;max-width:680px;margin:0 auto 48px">
-        <span style="display:inline-block;background:#EAF2FF;color:#0645CD;font:800 12.5px 'Nunito',sans-serif;padding:8px 16px;border-radius:999px;letter-spacing:.4px">ЧЕМ МЫ ЗАНИМАЕМСЯ</span>
-        <h2 style="font:700 clamp(28px,4vw,40px)/1.15 'Nunito',sans-serif;color:#0645CD;margin:18px 0 0">Программы и направления</h2>
-      </div>
-      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:24px">
-        <sc-for list="{{ programs }}" as="item" hint-placeholder-count="5">
-          <div style="background:#fff;border:1px solid #EEE3CC;border-radius:24px;padding:30px;box-shadow:0 12px 30px rgba(6,69,205,.08)">
-            <div style="width:58px;height:58px;border-radius:16px;background:{{ item.bg }};display:flex;align-items:center;justify-content:center">
-              <svg style="width:28px;height:28px;color:#0645CD"><use href="{{ item.icon }}"></use></svg>
-            </div>
-            <h3 style="font:700 19px 'Nunito',sans-serif;color:#0645CD;margin:20px 0 0">{{ item.title }}</h3>
-            <p style="font:500 14.5px/1.6 'Nunito',sans-serif;color:#5B6688;margin:10px 0 0">{{ item.desc }}</p>
-          </div>
-        </sc-for>
-      </div>
-    </div>
-  </section>
-
-  <section style="padding:0 24px 80px">
-    <div style="max-width:1240px;margin:0 auto">
-      <div style="text-align:center;max-width:680px;margin:0 auto 40px">
-        <span style="display:inline-block;background:#FFF3D6;color:#8A5A00;font:800 12.5px 'Nunito',sans-serif;padding:8px 16px;border-radius:999px;letter-spacing:.4px">ГРУППЫ</span>
-        <h2 style="font:700 clamp(26px,3.6vw,36px)/1.15 'Nunito',sans-serif;color:#0645CD;margin:18px 0 0">Возрастные группы</h2>
-      </div>
-      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px">
-        <sc-for list="{{ ageGroups }}" as="item" hint-placeholder-count="2">
-          <div style="background:#0645CD;border-radius:24px;padding:32px;color:#fff">
-            <div style="font:700 30px 'Nunito',sans-serif;color:#FEBA0C">{{ item.range }}</div>
-            <div style="font:800 17px 'Nunito',sans-serif;margin-top:8px">{{ item.name }}</div>
-            <p style="font:500 14.5px/1.6 'Nunito',sans-serif;color:#C9D4EE;margin:10px 0 0">{{ item.desc }}</p>
-          </div>
-        </sc-for>
-      </div>
-    </div>
-  </section>
-
-  <section id="schedule" data-screen-label="Режим дня" style="padding:80px 24px;background:#fff">
-    <div style="max-width:900px;margin:0 auto">
-      <div style="text-align:center;max-width:680px;margin:0 auto 44px">
-        <span style="display:inline-block;background:#EAF2FF;color:#0645CD;font:800 12.5px 'Nunito',sans-serif;padding:8px 16px;border-radius:999px;letter-spacing:.4px">ДЕНЬ В САДУ</span>
-        <h2 style="font:700 clamp(28px,4vw,40px)/1.15 'Nunito',sans-serif;color:#0645CD;margin:18px 0 0">Примерный режим дня</h2>
-      </div>
-      <div style="display:flex;flex-direction:column;gap:2px">
-        <sc-for list="{{ schedule }}" as="item" hint-placeholder-count="10">
-          <div style="display:flex;align-items:center;gap:20px;padding:16px 20px;border-radius:14px;background:{{ item.rowBg }}">
-            <div style="flex:none;width:36px;height:36px;border-radius:50%;background:#FEBA0C;display:flex;align-items:center;justify-content:center">
-              <svg style="width:18px;height:18px;color:#0645CD"><use href="#icon-clock"></use></svg>
-            </div>
-            <div style="font:800 14px 'Nunito',sans-serif;color:#0645CD;flex:none;width:120px">{{ item.time }}</div>
-            <div style="font:600 15px 'Nunito',sans-serif;color:#2B3352">{{ item.activity }}</div>
-          </div>
-        </sc-for>
-      </div>
-    </div>
-  </section>
-
-  <section id="gallery" data-screen-label="Галерея" style="padding:80px 24px">
-    <div style="max-width:1240px;margin:0 auto">
-      <div style="text-align:center;max-width:680px;margin:0 auto 44px">
-        <span style="display:inline-block;background:#FFF3D6;color:#8A5A00;font:800 12.5px 'Nunito',sans-serif;padding:8px 16px;border-radius:999px;letter-spacing:.4px">АТМОСФЕРА САДА</span>
-        <h2 style="font:700 clamp(28px,4vw,40px)/1.15 'Nunito',sans-serif;color:#0645CD;margin:18px 0 0">Галерея</h2>
-      </div>
-      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px">
-        <sc-for list="{{ gallery }}" as="item" hint-placeholder-count="6">
-          <div>
-            <image-slot id="{{ item.id }}" src="{{ item.src }}" shape="rounded" radius="20" placeholder="{{ item.caption }}" style="width:100%;height:220px"></image-slot>
-            <div style="font:700 13.5px 'Nunito',sans-serif;color:#5B6688;margin-top:10px;text-align:center">{{ item.caption }}</div>
-          </div>
-        </sc-for>
-      </div>
-    </div>
-  </section>
-
-  <section id="teachers" data-screen-label="Учителя" style="padding:80px 24px;background:#fff">
-    <div style="max-width:1240px;margin:0 auto">
-      <div style="text-align:center;max-width:680px;margin:0 auto 44px">
-        <span style="display:inline-block;background:#EAF2FF;color:#0645CD;font:800 12.5px 'Nunito',sans-serif;padding:8px 16px;border-radius:999px;letter-spacing:.4px">НАША КОМАНДА</span>
-        <h2 style="font:700 clamp(28px,4vw,40px)/1.15 'Nunito',sans-serif;color:#0645CD;margin:18px 0 0">Преподаватели</h2>
-      </div>
-      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:24px">
-        <sc-for list="{{ teachers }}" as="item" hint-placeholder-count="4">
-          <div style="text-align:center">
-            <image-slot id="{{ item.id }}" src="{{ item.src }}" shape="circle" placeholder="Фото" style="width:120px;height:120px;margin:0 auto"></image-slot>
-            <div style="font:700 16px 'Nunito',sans-serif;color:#0645CD;margin-top:16px">{{ item.role }}</div>
-            <div style="font:600 13.5px 'Nunito',sans-serif;color:#5B6688;margin-top:4px">{{ item.note }}</div>
-          </div>
-        </sc-for>
-      </div>
-    </div>
-  </section>
-
-  <sc-if value="{{ showTestimonials }}" hint-placeholder-val="{{ true }}">
-  <section id="reviews" data-screen-label="Отзывы" style="padding:80px 24px">
-    <div style="max-width:1240px;margin:0 auto">
-      <div style="text-align:center;max-width:680px;margin:0 auto 44px">
-        <span style="display:inline-block;background:#FFF3D6;color:#8A5A00;font:800 12.5px 'Nunito',sans-serif;padding:8px 16px;border-radius:999px;letter-spacing:.4px">РОДИТЕЛИ О НАС</span>
-        <h2 style="font:700 clamp(28px,4vw,40px)/1.15 'Nunito',sans-serif;color:#0645CD;margin:18px 0 0">Что говорят родители</h2>
-      </div>
-      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:24px">
-        <sc-for list="{{ testimonials }}" as="item" hint-placeholder-count="3">
-          <div style="border:2px dashed #D8CBAA;border-radius:24px;padding:28px;background:#FDF6EA">
-            <image-slot id="{{ item.id }}" src="{{ item.src }}" shape="circle" placeholder="Фото родителя" style="width:56px;height:56px"></image-slot>
-            <p style="font:italic 500 15px/1.6 'Nunito',sans-serif;color:#5B6688;margin:18px 0 0">«{{ item.text }}»</p>
-            <div style="font:800 14px 'Nunito',sans-serif;color:#0645CD;margin-top:14px">{{ item.name }}</div>
-          </div>
-        </sc-for>
-      </div>
-    </div>
-  </section>
-  </sc-if>
-
-  <section id="pricing" data-screen-label="Цены" style="padding:80px 24px;background:#fff">
-    <div style="max-width:820px;margin:0 auto;background:#0645CD;border-radius:32px;padding:clamp(32px,5vw,56px);color:#fff;position:relative;overflow:hidden">
-      <div style="position:absolute;top:-40px;right:-40px;width:180px;height:180px;border-radius:50%;background:#FEBA0C;opacity:.12"></div>
-      <div style="position:relative">
-        <span style="display:inline-block;background:#FEBA0C;color:#0645CD;font:800 12.5px 'Nunito',sans-serif;padding:8px 16px;border-radius:999px;letter-spacing:.4px">СТОИМОСТЬ</span>
-        <h2 style="font:700 clamp(26px,3.6vw,34px)/1.2 'Nunito',sans-serif;margin:18px 0 0">Стоимость обучения — индивидуально</h2>
-        <p style="font:500 15.5px/1.7 'Nunito',sans-serif;color:#C9D4EE;margin:14px 0 0;max-width:520px">Стоимость зависит от возрастной группы и графика посещения. Оставьте заявку — расскажем о тарифах и подберём программу в течение дня.</p>
-        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin-top:26px">
-          <sc-for list="{{ pricingFeatures }}" as="item" hint-placeholder-count="4">
-            <div style="display:flex;align-items:center;gap:10px">
-              <svg style="width:20px;height:20px;color:#FEBA0C;flex:none"><use href="#icon-check"></use></svg>
-              <span style="font:700 14px 'Nunito',sans-serif">{{ item }}</span>
-            </div>
+      <sc-if value="{{ mobileMenuOpen }}" hint-placeholder-val="{{ false }}">
+        <div
+          style="border-top:1px solid #EEE3CC;background:#FDF6EA;padding:8px 24px 20px;display:flex;flex-direction:column;gap:4px">
+          <sc-for list="{{ navLinks }}" as="item" hint-placeholder-count="6">
+            <a href="{{ item.href }}" onClick="{{ closeMobileMenu }}"
+              style="font:700 15px 'Nunito',sans-serif;color:#2B3352;padding:12px 6px;border-bottom:1px solid #EEE3CC">{{
+              item.label }}</a>
           </sc-for>
+          <a href="#contact-form" onClick="{{ closeMobileMenu }}"
+            style="margin-top:12px;text-align:center;background:#FEBA0C;color:#fff;font:800 15px 'Nunito',sans-serif;padding:14px;border-radius:999px">Записаться</a>
         </div>
-        <a href="#contact-form" style="display:inline-block;margin-top:30px;background:#FEBA0C;color:#fff;font:800 16px 'Nunito',sans-serif;padding:16px 32px;border-radius:999px">Узнать стоимость</a>
-      </div>
-    </div>
-  </section>
+      </sc-if>
+    </header>
 
-  <section id="faq" data-screen-label="FAQ" style="padding:80px 24px">
-    <div style="max-width:820px;margin:0 auto">
-      <div style="text-align:center;max-width:680px;margin:0 auto 44px">
-        <span style="display:inline-block;background:#EAF2FF;color:#0645CD;font:800 12.5px 'Nunito',sans-serif;padding:8px 16px;border-radius:999px;letter-spacing:.4px">ВОПРОСЫ</span>
-        <h2 style="font:700 clamp(28px,4vw,40px)/1.15 'Nunito',sans-serif;color:#0645CD;margin:18px 0 0">Частые вопросы</h2>
-      </div>
-      <div style="display:flex;flex-direction:column;gap:14px">
-        <sc-for list="{{ faqItems }}" as="item" hint-placeholder-count="6">
-          <div style="background:#fff;border:1px solid #EEE3CC;border-radius:18px;padding:22px 24px">
-            <div onClick="{{ item.toggle }}" style="display:flex;align-items:center;justify-content:space-between;gap:16px;cursor:pointer">
-              <span style="font:700 16px 'Nunito',sans-serif;color:#0645CD">{{ item.q }}</span>
-              <svg style="width:20px;height:20px;color:#0645CD;flex:none;transition:transform .2s;transform:{{ item.chevronRotation }}"><use href="#icon-chevron"></use></svg>
+    <main id="top" style="overflow:hidden">
+
+      <section data-screen-label="Hero"
+        style="position:relative;padding:clamp(48px,8vw,96px) 24px 40px;overflow:hidden">
+        <div
+          style="position:absolute;bottom:-100px;right:-60px;width:320px;height:320px;border-radius:50%;background:#FEBA0C;opacity:.12">
+        </div>
+        <div
+          style="position:absolute;top:120px;right:6%;width:46px;height:60px;border-radius:50% 50% 50% 50%/60% 60% 40% 40%;background:radial-gradient(circle at 35% 30%,#4E86EE,#0645CD);animation:floatY 5s ease-in-out infinite;box-shadow:0 12px 20px rgba(6,69,205,.28)">
+        </div>
+        <div
+          style="position:absolute;top:80px;right:11%;width:38px;height:50px;border-radius:50% 50% 50% 50%/60% 60% 40% 40%;background:radial-gradient(circle at 35% 30%,#FFE18C,#F2A900);animation:floatY2 4.5s ease-in-out infinite .3s;box-shadow:0 10px 16px rgba(242,169,0,.25)">
+        </div>
+        <svg
+          style="position:absolute;top:60px;left:8%;width:26px;height:26px;color:#F2A900;animation:spinSlow 12s linear infinite">
+          <use href="#icon-star"></use>
+        </svg>
+        <svg style="position:absolute;bottom:120px;left:4%;width:22px;height:22px;color:#0645CD;opacity:.5">
+          <use href="#icon-heart"></use>
+        </svg>
+
+        <div
+          style="position:relative;max-width:1240px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:48px;align-items:center">
+          <div>
+            <div
+              style="display:inline-flex;align-items:center;gap:8px;background:#0645CD;color:#fff;font:800 13px 'Nunito',sans-serif;padding:9px 18px;border-radius:999px;letter-spacing:.3px">
+              <svg style="width:15px;height:15px">
+                <use href="#icon-heart"></use>
+              </svg>
+              {{ heroBadgeText }}
             </div>
-            <sc-if value="{{ item.isOpen }}" hint-placeholder-val="{{ false }}">
-              <p style="font:500 14.5px/1.65 'Nunito',sans-serif;color:#5B6688;margin:14px 0 0">{{ item.a }}</p>
+            <h1
+              style="font:800 clamp(38px,5.2vw,64px)/1.08 'Nunito',sans-serif;color:#0645CD;margin:22px 0 0;text-shadow:0 4px 0 #043496,0 8px 16px rgba(6,69,205,.28)">
+              Место, где растут<br />счастливые дети</h1>
+            <p style="font:500 18px/1.6 'Nunito',sans-serif;color:#5B6688;margin:22px 0 0;max-width:520px">Частный
+              детский сад Batyr Kids в Астане: авторская программа казахского языка «Тілге саяхат», английский с
+              носителем, логопед и хореограф — рядом с домом, в ЖК Grand Victoria 2.</p>
+            <div style="display:flex;gap:14px;flex-wrap:wrap;margin-top:32px">
+              <a href="#contact-form"
+                style="background:#FEBA0C;color:#fff;font:800 16px 'Nunito',sans-serif;padding:16px 30px;border-radius:999px;box-shadow:0 10px 22px rgba(255,198,41,.45)">Записаться
+                на встречу</a>
+              <a href="{{ telHref }}"
+                style="display:flex;align-items:center;gap:10px;background:#0645CD;color:#fff;border:2px solid #0645CD;font:800 16px 'Nunito',sans-serif;padding:14px 26px;border-radius:999px;box-shadow:0 10px 22px rgba(6,69,205,.2)">
+                <svg style="width:18px;height:18px">
+                  <use href="#icon-phone"></use>
+                </svg>
+                {{ ctaPhone }}
+              </a>
+            </div>
+            <div style="display:flex;gap:28px;flex-wrap:wrap;margin-top:40px">
+              <sc-for list="{{ trustItems }}" as="item" hint-placeholder-count="4">
+                <div style="display:flex;align-items:center;gap:9px">
+                  <svg style="width:22px;height:22px;color:#0645CD;flex:none">
+                    <use href="{{ item.icon }}"></use>
+                  </svg>
+                  <span style="font:700 12.5px/1.3 'Nunito',sans-serif;color:#2B3352;max-width:100px">{{ item.label
+                    }}</span>
+                </div>
+              </sc-for>
+            </div>
+          </div>
+          <div style="position:relative">
+            <image-slot id="hero-photo" src="assets/hero_playroom.jpg" shape="rounded" radius="32"
+              placeholder="Фото игровой комнаты Batyr Kids"
+              style="width:100%;height:420px;box-shadow:0 30px 60px rgba(6,69,205,.20)"></image-slot>
+            <div
+              style="position:absolute;bottom:-22px;left:-22px;background:#fff;border-radius:20px;padding:16px 20px;box-shadow:0 16px 30px rgba(6,69,205,.18);display:flex;align-items:center;gap:12px">
+              <div
+                style="width:46px;height:46px;border-radius:50%;background:#EAF2FF;display:flex;align-items:center;justify-content:center;flex:none">
+                <svg style="width:24px;height:24px;color:#0645CD">
+                  <use href="#icon-camera"></use>
+                </svg>
+              </div>
+              <div>
+                <div style="font:800 14px 'Nunito',sans-serif;color:#0645CD">Видеонаблюдение</div>
+                <div style="font:600 12px 'Nunito',sans-serif;color:#5B6688">24/7 на всей территории</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="about" data-screen-label="О садике" style="position:relative;padding:64px 24px;background:#fff">
+        <div style="max-width:1000px;margin:0 auto;text-align:center">
+          <div
+            style="width:150px;height:150px;border-radius:50%;background:#FDF6EA;border:1px solid #EEE3CC;display:flex;flex-direction:column;align-items:center;justify-content:center;margin:0 auto 28px;gap:6px">
+            <svg style="width:40px;height:40px;color:#0645CD">
+              <use href="#icon-heart"></use>
+            </svg>
+            <span style="font:800 12px/1.3 'Nunito',sans-serif;color:#0645CD;max-width:110px">МЕСТО ЛЮБВИ, ЗАБОТЫ И
+              РАЗВИТИЯ</span>
+          </div>
+          <h2 style="font:700 clamp(28px,4vw,42px)/1.15 'Nunito',sans-serif;color:#0645CD;margin:0">Мы создаём
+            счастливое детство для каждого ребёнка</h2>
+          <p style="font:500 17px/1.7 'Nunito',sans-serif;color:#5B6688;margin:20px auto 0;max-width:700px">Batyr Kids —
+            частный детский сад в Астане, где казахский, английский и забота о каждом ребёнке встречаются в тёплом,
+            безопасном пространстве. Мы бережно сопровождаем малышей от 1 до 5 лет: помогаем адаптироваться, развиваем
+            речь, творчество и любовь к языкам через игру.</p>
+        </div>
+      </section>
+
+      <section id="programs" data-screen-label="Программы" style="padding:80px 24px">
+        <div style="max-width:1240px;margin:0 auto">
+          <div style="text-align:center;max-width:680px;margin:0 auto 48px">
+            <span
+              style="display:inline-block;background:#EAF2FF;color:#0645CD;font:800 12.5px 'Nunito',sans-serif;padding:8px 16px;border-radius:999px;letter-spacing:.4px">ЧЕМ
+              МЫ ЗАНИМАЕМСЯ</span>
+            <h2 style="font:700 clamp(28px,4vw,40px)/1.15 'Nunito',sans-serif;color:#0645CD;margin:18px 0 0">Программы и
+              направления</h2>
+          </div>
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:24px">
+            <sc-for list="{{ programs }}" as="item" hint-placeholder-count="5">
+              <div
+                style="background:#fff;border:1px solid #EEE3CC;border-radius:24px;padding:30px;box-shadow:0 12px 30px rgba(6,69,205,.08)">
+                <div
+                  style="width:58px;height:58px;border-radius:16px;background:{{ item.bg }};display:flex;align-items:center;justify-content:center">
+                  <svg style="width:28px;height:28px;color:#0645CD">
+                    <use href="{{ item.icon }}"></use>
+                  </svg>
+                </div>
+                <h3 style="font:700 19px 'Nunito',sans-serif;color:#0645CD;margin:20px 0 0">{{ item.title }}</h3>
+                <p style="font:500 14.5px/1.6 'Nunito',sans-serif;color:#5B6688;margin:10px 0 0">{{ item.desc }}</p>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+      </section>
+
+      <section style="padding:0 24px 80px">
+        <div style="max-width:1240px;margin:0 auto">
+          <div style="text-align:center;max-width:680px;margin:0 auto 40px">
+            <span
+              style="display:inline-block;background:#FFF3D6;color:#8A5A00;font:800 12.5px 'Nunito',sans-serif;padding:8px 16px;border-radius:999px;letter-spacing:.4px">ГРУППЫ</span>
+            <h2 style="font:700 clamp(26px,3.6vw,36px)/1.15 'Nunito',sans-serif;color:#0645CD;margin:18px 0 0">
+              Возрастные группы</h2>
+          </div>
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px">
+            <sc-for list="{{ ageGroups }}" as="item" hint-placeholder-count="2">
+              <div style="background:#0645CD;border-radius:24px;padding:32px;color:#fff">
+                <div style="font:700 30px 'Nunito',sans-serif;color:#FEBA0C">{{ item.range }}</div>
+                <div style="font:800 17px 'Nunito',sans-serif;margin-top:8px">{{ item.name }}</div>
+                <p style="font:500 14.5px/1.6 'Nunito',sans-serif;color:#C9D4EE;margin:10px 0 0">{{ item.desc }}</p>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+      </section>
+
+      <section id="schedule" data-screen-label="Режим дня" style="padding:80px 24px;background:#fff">
+        <div style="max-width:900px;margin:0 auto">
+          <div style="text-align:center;max-width:680px;margin:0 auto 44px">
+            <span
+              style="display:inline-block;background:#EAF2FF;color:#0645CD;font:800 12.5px 'Nunito',sans-serif;padding:8px 16px;border-radius:999px;letter-spacing:.4px">ДЕНЬ
+              В САДУ</span>
+            <h2 style="font:700 clamp(28px,4vw,40px)/1.15 'Nunito',sans-serif;color:#0645CD;margin:18px 0 0">Примерный
+              режим дня</h2>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:2px">
+            <sc-for list="{{ schedule }}" as="item" hint-placeholder-count="10">
+              <div
+                style="display:flex;align-items:center;gap:20px;padding:16px 20px;border-radius:14px;background:{{ item.rowBg }}">
+                <div
+                  style="flex:none;width:36px;height:36px;border-radius:50%;background:#FEBA0C;display:flex;align-items:center;justify-content:center">
+                  <svg style="width:18px;height:18px;color:#0645CD">
+                    <use href="#icon-clock"></use>
+                  </svg>
+                </div>
+                <div style="font:800 14px 'Nunito',sans-serif;color:#0645CD;flex:none;width:120px">{{ item.time }}</div>
+                <div style="font:600 15px 'Nunito',sans-serif;color:#2B3352">{{ item.activity }}</div>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+      </section>
+
+      <section id="gallery" data-screen-label="Галерея" style="padding:80px 24px">
+        <div style="max-width:1240px;margin:0 auto">
+          <div style="text-align:center;max-width:680px;margin:0 auto 44px">
+            <span
+              style="display:inline-block;background:#FFF3D6;color:#8A5A00;font:800 12.5px 'Nunito',sans-serif;padding:8px 16px;border-radius:999px;letter-spacing:.4px">АТМОСФЕРА
+              САДА</span>
+            <h2 style="font:700 clamp(28px,4vw,40px)/1.15 'Nunito',sans-serif;color:#0645CD;margin:18px 0 0">Галерея
+            </h2>
+          </div>
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px">
+            <sc-for list="{{ gallery }}" as="item" hint-placeholder-count="6">
+              <div>
+                <image-slot id="{{ item.id }}" src="{{ item.src }}" shape="rounded" radius="20"
+                  placeholder="{{ item.caption }}" style="width:100%;height:220px"></image-slot>
+                <div style="font:700 13.5px 'Nunito',sans-serif;color:#5B6688;margin-top:10px;text-align:center">{{
+                  item.caption }}</div>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+      </section>
+
+      <section id="teachers" data-screen-label="Учителя" style="padding:80px 24px;background:#fff">
+        <div style="max-width:1240px;margin:0 auto">
+          <div style="text-align:center;max-width:680px;margin:0 auto 44px">
+            <span
+              style="display:inline-block;background:#EAF2FF;color:#0645CD;font:800 12.5px 'Nunito',sans-serif;padding:8px 16px;border-radius:999px;letter-spacing:.4px">НАША
+              КОМАНДА</span>
+            <h2 style="font:700 clamp(28px,4vw,40px)/1.15 'Nunito',sans-serif;color:#0645CD;margin:18px 0 0">
+              Преподаватели</h2>
+          </div>
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:24px">
+            <sc-for list="{{ teachers }}" as="item" hint-placeholder-count="4">
+              <div style="text-align:center">
+                <image-slot id="{{ item.id }}" src="{{ item.src }}" shape="circle" placeholder="Фото"
+                  style="width:120px;height:120px;margin:0 auto"></image-slot>
+                <div style="font:700 16px 'Nunito',sans-serif;color:#0645CD;margin-top:16px">{{ item.role }}</div>
+                <div style="font:600 13.5px 'Nunito',sans-serif;color:#5B6688;margin-top:4px">{{ item.note }}</div>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+      </section>
+
+      <sc-if value="{{ showTestimonials }}" hint-placeholder-val="{{ true }}">
+        <section id="reviews" data-screen-label="Отзывы" style="padding:80px 24px">
+          <div style="max-width:1240px;margin:0 auto">
+            <div style="text-align:center;max-width:680px;margin:0 auto 44px">
+              <span
+                style="display:inline-block;background:#FFF3D6;color:#8A5A00;font:800 12.5px 'Nunito',sans-serif;padding:8px 16px;border-radius:999px;letter-spacing:.4px">РОДИТЕЛИ
+                О НАС</span>
+              <h2 style="font:700 clamp(28px,4vw,40px)/1.15 'Nunito',sans-serif;color:#0645CD;margin:18px 0 0">Что
+                говорят родители</h2>
+            </div>
+            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:24px">
+              <sc-for list="{{ testimonials }}" as="item" hint-placeholder-count="3">
+                <div style="border:2px dashed #D8CBAA;border-radius:24px;padding:28px;background:#FDF6EA">
+                  <image-slot id="{{ item.id }}" src="{{ item.src }}" shape="circle" placeholder="Фото родителя"
+                    style="width:56px;height:56px"></image-slot>
+                  <p style="font:italic 500 15px/1.6 'Nunito',sans-serif;color:#5B6688;margin:18px 0 0">«{{ item.text
+                    }}»</p>
+                  <div style="font:800 14px 'Nunito',sans-serif;color:#0645CD;margin-top:14px">{{ item.name }}</div>
+                </div>
+              </sc-for>
+            </div>
+          </div>
+        </section>
+      </sc-if>
+
+      <section id="pricing" data-screen-label="Цены" style="padding:80px 24px;background:#fff">
+        <div
+          style="max-width:820px;margin:0 auto;background:#0645CD;border-radius:32px;padding:clamp(32px,5vw,56px);color:#fff;position:relative;overflow:hidden">
+          <div
+            style="position:absolute;top:-40px;right:-40px;width:180px;height:180px;border-radius:50%;background:#FEBA0C;opacity:.12">
+          </div>
+          <div style="position:relative">
+            <h2 style="font:700 clamp(26px,3.6vw,34px)/1.2 'Nunito',sans-serif;margin:18px 0 0">Стоимость обучения —
+              индивидуально</h2>
+            <p style="font:500 15.5px/1.7 'Nunito',sans-serif;color:#C9D4EE;margin:14px 0 0;max-width:520px">Стоимость
+              зависит от возрастной группы и графика посещения. Оставьте заявку — расскажем о тарифах и подберём
+              программу в течение дня.</p>
+            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin-top:26px">
+              <sc-for list="{{ pricingFeatures }}" as="item" hint-placeholder-count="4">
+                <div style="display:flex;align-items:center;gap:10px">
+                  <svg style="width:20px;height:20px;color:#FEBA0C;flex:none">
+                    <use href="#icon-check"></use>
+                  </svg>
+                  <span style="font:700 14px 'Nunito',sans-serif">{{ item }}</span>
+                </div>
+              </sc-for>
+            </div>
+            <a href="#contact-form"
+              style="display:inline-block;margin-top:30px;background:#FEBA0C;color:#fff;font:800 16px 'Nunito',sans-serif;padding:16px 32px;border-radius:999px">Узнать
+              стоимость</a>
+          </div>
+        </div>
+      </section>
+
+      <section id="faq" data-screen-label="FAQ" style="padding:80px 24px">
+        <div style="max-width:820px;margin:0 auto">
+          <div style="text-align:center;max-width:680px;margin:0 auto 44px">
+            <span
+              style="display:inline-block;background:#EAF2FF;color:#0645CD;font:800 12.5px 'Nunito',sans-serif;padding:8px 16px;border-radius:999px;letter-spacing:.4px">ВОПРОСЫ</span>
+            <h2 style="font:700 clamp(28px,4vw,40px)/1.15 'Nunito',sans-serif;color:#0645CD;margin:18px 0 0">Частые
+              вопросы</h2>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:14px">
+            <sc-for list="{{ faqItems }}" as="item" hint-placeholder-count="6">
+              <div style="background:#fff;border:1px solid #EEE3CC;border-radius:18px;padding:22px 24px">
+                <div onClick="{{ item.toggle }}"
+                  style="display:flex;align-items:center;justify-content:space-between;gap:16px;cursor:pointer">
+                  <span style="font:700 16px 'Nunito',sans-serif;color:#0645CD">{{ item.q }}</span>
+                  <svg
+                    style="width:20px;height:20px;color:#0645CD;flex:none;transition:transform .2s;transform:{{ item.chevronRotation }}">
+                    <use href="#icon-chevron"></use>
+                  </svg>
+                </div>
+                <sc-if value="{{ item.isOpen }}" hint-placeholder-val="{{ false }}">
+                  <p style="font:500 14.5px/1.65 'Nunito',sans-serif;color:#5B6688;margin:14px 0 0">{{ item.a }}</p>
+                </sc-if>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+      </section>
+
+      <section id="contact" data-screen-label="Контакты" style="padding:80px 24px;background:#fff">
+        <div
+          style="max-width:1240px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:48px">
+          <div>
+            <span
+              style="display:inline-block;background:#FFF3D6;color:#8A5A00;font:800 12.5px 'Nunito',sans-serif;padding:8px 16px;border-radius:999px;letter-spacing:.4px">КОНТАКТЫ</span>
+            <h2 style="font:700 clamp(28px,4vw,38px)/1.15 'Nunito',sans-serif;color:#0645CD;margin:18px 0 0">Приходите
+              познакомиться</h2>
+            <div style="display:flex;align-items:flex-start;gap:14px;margin-top:28px">
+              <svg style="width:24px;height:24px;color:#0645CD;flex:none">
+                <use href="#icon-pin"></use>
+              </svg>
+              <div style="font:600 15.5px/1.6 'Nunito',sans-serif;color:#2B3352">ул. Байтурсынова, 4/1, ЖК Grand
+                Victoria 2<br />Астана, 010000</div>
+            </div>
+            <div style="display:flex;align-items:center;gap:14px;margin-top:16px">
+              <svg style="width:24px;height:24px;color:#0645CD;flex:none">
+                <use href="#icon-phone"></use>
+              </svg>
+              <a href="{{ telHref }}" style="font:700 15.5px 'Nunito',sans-serif;color:#2B3352">{{ ctaPhone }}</a>
+            </div>
+            <div style="display:flex;gap:12px;margin-top:26px">
+              <a href="{{ telHref }}"
+                style="width:48px;height:48px;border-radius:50%;background:#EAF2FF;display:flex;align-items:center;justify-content:center">
+                <svg style="width:22px;height:22px;color:#0645CD">
+                  <use href="#icon-phone"></use>
+                </svg>
+              </a>
+              <a href="{{ waHref }}"
+                style="width:48px;height:48px;border-radius:50%;background:#EAF2FF;display:flex;align-items:center;justify-content:center">
+                <svg style="width:22px;height:22px;color:#0645CD">
+                  <use href="#icon-message"></use>
+                </svg>
+              </a>
+            </div>
+            <div style="border-radius:24px;overflow:hidden;margin-top:32px;border:1px solid #EEE3CC">
+              <iframe src="{{ mapSrc }}" style="width:100%;height:260px;border:0" loading="lazy"></iframe>
+            </div>
+          </div>
+
+          <div id="contact-form" style="background:#FDF6EA;border-radius:28px;padding:clamp(28px,4vw,40px)">
+            <sc-if value="{{ formSubmitted }}" hint-placeholder-val="{{ false }}">
+              <div style="text-align:center;padding:30px 0">
+                <div
+                  style="width:64px;height:64px;border-radius:50%;background:#EAF2FF;display:flex;align-items:center;justify-content:center;margin:0 auto">
+                  <svg style="width:32px;height:32px;color:#0645CD">
+                    <use href="#icon-check"></use>
+                  </svg>
+                </div>
+                <h3 style="font:700 22px 'Nunito',sans-serif;color:#0645CD;margin:20px 0 0">Спасибо за заявку!</h3>
+                <p style="font:500 15px/1.6 'Nunito',sans-serif;color:#5B6688;margin:10px 0 0">Мы свяжемся с вами в
+                  течение дня, чтобы договориться о встрече.</p>
+              </div>
+            </sc-if>
+            <sc-if value="{{ formNotSubmitted }}" hint-placeholder-val="{{ true }}">
+              <div>
+                <h3 style="font:700 22px 'Nunito',sans-serif;color:#0645CD;margin:0">Запись на знакомство</h3>
+                <p style="font:500 14.5px/1.6 'Nunito',sans-serif;color:#5B6688;margin:8px 0 24px">Оставьте контакты —
+                  расскажем о программе и покажем сад.</p>
+                <form onSubmit="{{ handleFormSubmit }}" style="display:flex;flex-direction:column;gap:16px">
+                  <div>
+                    <label for="parentName"
+                      style="font:700 13px 'Nunito',sans-serif;color:#0645CD;display:block;margin-bottom:6px">Ваше
+                      имя</label>
+                    <input id="parentName" type="text" required="{{ true }}" value="{{ parentName }}"
+                      onChange="{{ onParentNameChange }}" placeholder="Имя и фамилия"
+                      style="width:100%;padding:14px 16px;border-radius:14px;border:1px solid #E7DFCF;font-size:15px;background:#fff"></input>
+                  </div>
+                  <div>
+                    <label for="phone"
+                      style="font:700 13px 'Nunito',sans-serif;color:#0645CD;display:block;margin-bottom:6px">Телефон</label>
+                    <input id="phone" type="tel" required="{{ true }}" value="{{ phone }}"
+                      onChange="{{ onPhoneChange }}" placeholder="+7 700 000 00 00"
+                      style="width:100%;padding:14px 16px;border-radius:14px;border:1px solid #E7DFCF;font-size:15px;background:#fff"></input>
+                  </div>
+                  <div>
+                    <label for="childAge"
+                      style="font:700 13px 'Nunito',sans-serif;color:#0645CD;display:block;margin-bottom:6px">Возраст
+                      ребёнка</label>
+                    <select id="childAge" value="{{ childAge }}" onChange="{{ onChildAgeChange }}"
+                      style="width:100%;padding:14px 16px;border-radius:14px;border:1px solid #E7DFCF;font-size:15px;background:#fff">
+                      <option value="1-3">1–3 года</option>
+                      <option value="3-5">3–5 лет</option>
+                    </select>
+                  </div>
+                  <button type="submit"
+                    style="margin-top:6px;background:#FEBA0C;color:#fff;font:800 16px 'Nunito',sans-serif;padding:16px;border-radius:14px;border:none;cursor:pointer">Отправить
+                    заявку</button>
+                </form>
+              </div>
             </sc-if>
           </div>
-        </sc-for>
-      </div>
-    </div>
-  </section>
+        </div>
+      </section>
+    </main>
 
-  <section id="contact" data-screen-label="Контакты" style="padding:80px 24px;background:#fff">
-    <div style="max-width:1240px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:48px">
-      <div>
-        <span style="display:inline-block;background:#FFF3D6;color:#8A5A00;font:800 12.5px 'Nunito',sans-serif;padding:8px 16px;border-radius:999px;letter-spacing:.4px">КОНТАКТЫ</span>
-        <h2 style="font:700 clamp(28px,4vw,38px)/1.15 'Nunito',sans-serif;color:#0645CD;margin:18px 0 0">Приходите познакомиться</h2>
-        <div style="display:flex;align-items:flex-start;gap:14px;margin-top:28px">
-          <svg style="width:24px;height:24px;color:#0645CD;flex:none"><use href="#icon-pin"></use></svg>
-          <div style="font:600 15.5px/1.6 'Nunito',sans-serif;color:#2B3352">ул. Байтурсынова, 4/1, ЖК Grand Victoria 2<br/>Астана, 010000</div>
-        </div>
-        <div style="display:flex;align-items:center;gap:14px;margin-top:16px">
-          <svg style="width:24px;height:24px;color:#0645CD;flex:none"><use href="#icon-phone"></use></svg>
-          <a href="{{ telHref }}" style="font:700 15.5px 'Nunito',sans-serif;color:#2B3352">{{ ctaPhone }}</a>
-        </div>
-        <div style="display:flex;gap:12px;margin-top:26px">
-          <a href="{{ telHref }}" style="width:48px;height:48px;border-radius:50%;background:#EAF2FF;display:flex;align-items:center;justify-content:center">
-            <svg style="width:22px;height:22px;color:#0645CD"><use href="#icon-phone"></use></svg>
-          </a>
-          <a href="{{ waHref }}" style="width:48px;height:48px;border-radius:50%;background:#EAF2FF;display:flex;align-items:center;justify-content:center">
-            <svg style="width:22px;height:22px;color:#0645CD"><use href="#icon-message"></use></svg>
-          </a>
-        </div>
-        <div style="border-radius:24px;overflow:hidden;margin-top:32px;border:1px solid #EEE3CC">
-          <iframe src="{{ mapSrc }}" style="width:100%;height:260px;border:0" loading="lazy"></iframe>
-        </div>
-      </div>
-
-      <div id="contact-form" style="background:#FDF6EA;border-radius:28px;padding:clamp(28px,4vw,40px)">
-        <sc-if value="{{ formSubmitted }}" hint-placeholder-val="{{ false }}">
-          <div style="text-align:center;padding:30px 0">
-            <div style="width:64px;height:64px;border-radius:50%;background:#EAF2FF;display:flex;align-items:center;justify-content:center;margin:0 auto">
-              <svg style="width:32px;height:32px;color:#0645CD"><use href="#icon-check"></use></svg>
-            </div>
-            <h3 style="font:700 22px 'Nunito',sans-serif;color:#0645CD;margin:20px 0 0">Спасибо за заявку!</h3>
-            <p style="font:500 15px/1.6 'Nunito',sans-serif;color:#5B6688;margin:10px 0 0">Мы свяжемся с вами в течение дня, чтобы договориться о встрече.</p>
+    <footer style="background:#0645CD;color:#C9D4EE;padding:56px 24px 28px">
+      <div
+        style="max-width:1240px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:32px">
+        <div>
+          <div style="display:flex;align-items:center;gap:10px">
+            <img src="assets/logo.png" alt="Batyr Kids" style="width:42px;height:42px;border-radius:50%">
+            <span style="font:700 19px 'Nunito',sans-serif;color:#fff">Batyr Kids</span>
           </div>
-        </sc-if>
-        <sc-if value="{{ formNotSubmitted }}" hint-placeholder-val="{{ true }}">
-          <div>
-            <h3 style="font:700 22px 'Nunito',sans-serif;color:#0645CD;margin:0">Запись на знакомство</h3>
-            <p style="font:500 14.5px/1.6 'Nunito',sans-serif;color:#5B6688;margin:8px 0 24px">Оставьте контакты — расскажем о программе и покажем сад.</p>
-            <form onSubmit="{{ handleFormSubmit }}" style="display:flex;flex-direction:column;gap:16px">
-              <div>
-                <label for="parentName" style="font:700 13px 'Nunito',sans-serif;color:#0645CD;display:block;margin-bottom:6px">Ваше имя</label>
-                <input id="parentName" type="text" required="{{ true }}" value="{{ parentName }}" onChange="{{ onParentNameChange }}" placeholder="Имя и фамилия" style="width:100%;padding:14px 16px;border-radius:14px;border:1px solid #E7DFCF;font-size:15px;background:#fff"></input>
-              </div>
-              <div>
-                <label for="phone" style="font:700 13px 'Nunito',sans-serif;color:#0645CD;display:block;margin-bottom:6px">Телефон</label>
-                <input id="phone" type="tel" required="{{ true }}" value="{{ phone }}" onChange="{{ onPhoneChange }}" placeholder="+7 700 000 00 00" style="width:100%;padding:14px 16px;border-radius:14px;border:1px solid #E7DFCF;font-size:15px;background:#fff"></input>
-              </div>
-              <div>
-                <label for="childAge" style="font:700 13px 'Nunito',sans-serif;color:#0645CD;display:block;margin-bottom:6px">Возраст ребёнка</label>
-                <select id="childAge" value="{{ childAge }}" onChange="{{ onChildAgeChange }}" style="width:100%;padding:14px 16px;border-radius:14px;border:1px solid #E7DFCF;font-size:15px;background:#fff">
-                  <option value="1-3">1–3 года</option>
-                  <option value="3-5">3–5 лет</option>
-                </select>
-              </div>
-              <button type="submit" style="margin-top:6px;background:#FEBA0C;color:#fff;font:800 16px 'Nunito',sans-serif;padding:16px;border-radius:14px;border:none;cursor:pointer">Отправить заявку</button>
-            </form>
+          <p style="font:500 14px/1.6 'Nunito',sans-serif;color:#9FB0DA;margin-top:14px;max-width:260px">Мы создаём
+            счастливое будущее для ваших детей.</p>
+        </div>
+        <div>
+          <div style="font:800 13px 'Nunito',sans-serif;color:#fff;letter-spacing:.3px;margin-bottom:14px">РАЗДЕЛЫ</div>
+          <div style="display:flex;flex-direction:column;gap:10px">
+            <sc-for list="{{ navLinks }}" as="item" hint-placeholder-count="6">
+              <a href="{{ item.href }}" style="font:600 14px 'Nunito',sans-serif;color:#C9D4EE">{{ item.label }}</a>
+            </sc-for>
           </div>
-        </sc-if>
+        </div>
+        <div>
+          <div style="font:800 13px 'Nunito',sans-serif;color:#fff;letter-spacing:.3px;margin-bottom:14px">КОНТАКТЫ
+          </div>
+          <div style="font:600 14px/1.7 'Nunito',sans-serif;color:#C9D4EE">ул. Байтурсынова, 4/1<br />ЖК Grand Victoria
+            2, Астана</div>
+          <a href="{{ telHref }}"
+            style="display:block;font:700 15px 'Nunito',sans-serif;color:#FEBA0C;margin-top:10px">{{ ctaPhone }}</a>
+          <div style="display:flex;gap:10px;margin-top:16px">
+            <a href="{{ waHref }}"
+              style="width:40px;height:40px;border-radius:50%;background:rgba(255,255,255,.1);display:flex;align-items:center;justify-content:center">
+              <svg style="width:19px;height:19px;color:#fff">
+                <use href="#icon-message"></use>
+              </svg>
+            </a>
+            <a href="#gallery"
+              style="width:40px;height:40px;border-radius:50%;background:rgba(255,255,255,.1);display:flex;align-items:center;justify-content:center">
+              <svg style="width:19px;height:19px;color:#fff">
+                <use href="#icon-camera"></use>
+              </svg>
+            </a>
+          </div>
+        </div>
       </div>
-    </div>
-  </section>
-</main>
+      <div
+        style="max-width:1240px;margin:36px auto 0;padding-top:20px;border-top:1px solid rgba(255,255,255,.12);font:600 12.5px 'Nunito',sans-serif;color:#8093C2">
+        © 2026 Batyr Kids. Все права защищены.</div>
+    </footer>
 
-<footer style="background:#0645CD;color:#C9D4EE;padding:56px 24px 28px">
-  <div style="max-width:1240px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:32px">
-    <div>
-      <div style="display:flex;align-items:center;gap:10px">
-        <img src="assets/logo.png" alt="Batyr Kids" style="width:42px;height:42px;border-radius:50%">
-        <span style="font:700 19px 'Nunito',sans-serif;color:#fff">Batyr Kids</span>
-      </div>
-      <p style="font:500 14px/1.6 'Nunito',sans-serif;color:#9FB0DA;margin-top:14px;max-width:260px">Мы создаём счастливое будущее для ваших детей.</p>
-    </div>
-    <div>
-      <div style="font:800 13px 'Nunito',sans-serif;color:#fff;letter-spacing:.3px;margin-bottom:14px">РАЗДЕЛЫ</div>
-      <div style="display:flex;flex-direction:column;gap:10px">
-        <sc-for list="{{ navLinks }}" as="item" hint-placeholder-count="6">
-          <a href="{{ item.href }}" style="font:600 14px 'Nunito',sans-serif;color:#C9D4EE">{{ item.label }}</a>
-        </sc-for>
-      </div>
-    </div>
-    <div>
-      <div style="font:800 13px 'Nunito',sans-serif;color:#fff;letter-spacing:.3px;margin-bottom:14px">КОНТАКТЫ</div>
-      <div style="font:600 14px/1.7 'Nunito',sans-serif;color:#C9D4EE">ул. Байтурсынова, 4/1<br/>ЖК Grand Victoria 2, Астана</div>
-      <a href="{{ telHref }}" style="display:block;font:700 15px 'Nunito',sans-serif;color:#FEBA0C;margin-top:10px">{{ ctaPhone }}</a>
-      <div style="display:flex;gap:10px;margin-top:16px">
-        <a href="{{ waHref }}" style="width:40px;height:40px;border-radius:50%;background:rgba(255,255,255,.1);display:flex;align-items:center;justify-content:center">
-          <svg style="width:19px;height:19px;color:#fff"><use href="#icon-message"></use></svg>
-        </a>
-        <a href="#gallery" style="width:40px;height:40px;border-radius:50%;background:rgba(255,255,255,.1);display:flex;align-items:center;justify-content:center">
-          <svg style="width:19px;height:19px;color:#fff"><use href="#icon-camera"></use></svg>
-        </a>
-      </div>
-    </div>
-  </div>
-  <div style="max-width:1240px;margin:36px auto 0;padding-top:20px;border-top:1px solid rgba(255,255,255,.12);font:600 12.5px 'Nunito',sans-serif;color:#8093C2">© 2026 Batyr Kids. Все права защищены.</div>
-</footer>
-
-</x-dc>
-<script type="text/x-dc" data-dc-script data-props="{
+  </x-dc>
+  <script type="text/x-dc" data-dc-script data-props="{
   &quot;$preview&quot;: {&quot;width&quot;: 1440, &quot;height&quot;: 900},
   &quot;enrollmentStatus&quot;: {&quot;editor&quot;: &quot;enum&quot;, &quot;default&quot;: &quot;open&quot;, &quot;options&quot;: [&quot;open&quot;, &quot;opening_soon&quot;], &quot;tsType&quot;: &quot;string&quot;, &quot;section&quot;: &quot;Поведение&quot;},
   &quot;showTestimonials&quot;: {&quot;editor&quot;: &quot;boolean&quot;, &quot;default&quot;: true, &quot;tsType&quot;: &quot;boolean&quot;, &quot;section&quot;: &quot;Поведение&quot;},
@@ -553,4 +827,5 @@ class Component extends DCLogic {
 }
 </script>
 </body>
+
 </html>
