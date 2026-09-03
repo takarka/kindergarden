@@ -1,0 +1,966 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AQYL — ИИ, логика и алгоритмы для детей 7–10 лет</title>
+  <meta name="description"
+    content="Безопасная игровая платформа, где школьники 1–4 классов изучают искусственный интеллект, алгоритмическое мышление и логику: 15-минутные квесты, свои сказки, рисунки и мини-игры. Первый квест — бесплатно.">
+  <meta name="theme-color" content="#5b4be8">
+  <link rel="canonical" href="https://aqyl.ai/">
+
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="AQYL — основы искусственного интеллекта для детей 7–10 лет">
+  <meta property="og:description"
+    content="Игровые 15-минутные квесты: ребёнок переходит от бездумного скроллинга к созданию своих сказок, рисунков и мини-игр с помощью ИИ. Закрытый безопасный контур 0+.">
+  <meta property="og:locale" content="ru_RU">
+
+  <link rel="icon"
+    href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='9' fill='%235b4be8'/%3E%3Crect x='7' y='10' width='18' height='14' rx='6' fill='%23fff'/%3E%3Ccircle cx='13' cy='17' r='2.4' fill='%235b4be8'/%3E%3Ccircle cx='19' cy='17' r='2.4' fill='%235b4be8'/%3E%3Crect x='15' y='4' width='2' height='6' rx='1' fill='%23ffc93c'/%3E%3Ccircle cx='16' cy='4' r='2.6' fill='%23ffc93c'/%3E%3C/svg%3E">
+
+  <!-- Критический контент рендерится сразу: шрифты и стили не блокируют парсинг дольше необходимого -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@600;700&family=Nunito:wght@500;600;700;800;900&display=swap"
+    media="print" onload="this.media='all'">
+  <noscript>
+    <link rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@600;700&family=Nunito:wght@500;600;700;800;900&display=swap">
+  </noscript>
+
+  <!-- Интерактив подгружается фоном и не блокирует первый экран -->
+  <script src="assets/js/i18n.js" defer></script>
+  <script src="assets/js/main.js" defer></script>
+</head>
+
+<body>
+  <a class="skip-link" href="#main" data-i18n="a11y.skip">Перейти к основному содержанию</a>
+
+  <!-- ======================= HEADER ======================= -->
+  <header class="header" id="header">
+    <div class="wrap header__inner">
+      <a class="logo" href="#top" aria-label="AQYL — на главную">
+        <span class="logo__mark" aria-hidden="true">
+          <svg viewBox="0 0 32 32" fill="none">
+            <rect x="5" y="10" width="22" height="16" rx="7" fill="#fff" />
+            <circle cx="12" cy="18" r="2.6" fill="#5b4be8" />
+            <circle cx="20" cy="18" r="2.6" fill="#5b4be8" />
+            <rect x="15" y="3" width="2" height="7" rx="1" fill="#ffc93c" />
+            <circle cx="16" cy="3.2" r="2.8" fill="#ffc93c" />
+          </svg>
+        </span>
+        <span>AQYL<small data-i18n="brand.tag">ИИ-школа 7–10 лет</small></span>
+      </a>
+
+      <nav class="nav" id="nav" aria-label="Основная навигация">
+        <div class="lang lang--nav" role="group" aria-label="Язык интерфейса">
+          <button type="button" data-lang="ru" aria-pressed="true">RU</button>
+          <button type="button" data-lang="kz" aria-pressed="false">KZ</button>
+          <button type="button" data-lang="en" aria-pressed="false">EN</button>
+        </div>
+        <ul class="nav__list">
+          <li><a href="#learn" data-i18n="nav.learn">Чему учим</a></li>
+          <li><a href="#program" data-i18n="nav.program">Программа по классам</a></li>
+          <li><a href="#safety" data-i18n="nav.safety">Безопасность</a></li>
+          <li><a href="#schools" data-i18n="nav.schools">Школам и учителям</a></li>
+          <li><a href="#pricing" data-i18n="nav.pricing">Тарифы</a></li>
+          <li><a href="#reviews" data-i18n="nav.reviews">Отзывы</a></li>
+          <li class="nav__login-mobile"><a href="#login" data-i18n="nav.login">Вход в кабинет</a></li>
+        </ul>
+      </nav>
+
+      <div class="header__actions">
+        <div class="lang lang--header" role="group" aria-label="Язык интерфейса">
+          <button type="button" data-lang="ru" aria-pressed="true">RU</button>
+          <button type="button" data-lang="kz" aria-pressed="false">KZ</button>
+          <button type="button" data-lang="en" aria-pressed="false">EN</button>
+        </div>
+        <a class="btn-link" href="#login" data-i18n="nav.login">Вход в кабинет</a>
+        <button class="btn btn--sun" type="button" data-open-modal>
+          <span class="cta-full" data-i18n="cta.try">Попробовать бесплатно</span>
+          <span class="cta-short" data-i18n="cta.tryShort">Начать</span>
+        </button>
+        <button class="burger" type="button" id="burger" aria-expanded="false" aria-controls="nav"
+          aria-label="Меню"><span></span></button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <span id="top"></span>
+
+    <!-- ======================= HERO ======================= -->
+    <section class="hero">
+      <div class="wrap hero__grid">
+        <div class="hero__text">
+          <span class="eyebrow" data-i18n="hero.eyebrow">1–4 класс · ИИ, логика, алгоритмы</span>
+          <h1 data-i18n="hero.h1" data-i18n-html>Превратите интерес к экрану в <em>суперсилу</em>: основы искусственного
+            интеллекта и логики для детей 7–10 лет</h1>
+          <p class="hero__sub" data-i18n="hero.sub">Безопасная игровая платформа, где школьники 1–4 классов переходят от
+            пассивного потребления контента к созданию собственных сказок, цифровых рисунков и первых мини-игр с помощью
+            ИИ.</p>
+
+          <div class="hero__cta">
+            <button class="btn btn--lg" type="button" data-open-modal data-i18n="cta.quest">Пройти 1-й квест
+              бесплатно</button>
+            <a class="btn btn--lg btn--ghost" href="#schools" data-i18n="cta.teachers">Для учителей и классов</a>
+          </div>
+          <p class="hero__note" data-i18n="hero.note">Без привязки банковской карты · регистрация занимает 40 секунд</p>
+
+          <ul class="trust">
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M12 3l7 3v5.5c0 4.2-2.9 7.6-7 9-4.1-1.4-7-4.8-7-9V6l7-3z" fill="#e0f8f1" stroke="#16c79a"
+                  stroke-width="1.8" />
+                <path d="M9 12l2.2 2.2L15.5 10" stroke="#16c79a" stroke-width="2" stroke-linecap="round" />
+              </svg>
+              <span data-i18n="trust.1">Одобрено методистами начального образования</span>
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <rect x="4" y="10" width="16" height="10" rx="3" fill="#eeebff" stroke="#5b4be8" stroke-width="1.8" />
+                <path d="M8 10V8a4 4 0 018 0v2" stroke="#5b4be8" stroke-width="1.8" stroke-linecap="round" />
+                <circle cx="12" cy="15" r="1.6" fill="#5b4be8" />
+              </svg>
+              <span data-i18n="trust.2">100% безопасная детская песочница</span>
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <circle cx="12" cy="12" r="8.5" fill="#fff5da" stroke="#e0a800" stroke-width="1.8" />
+                <path d="M12 7.5V12l3 2" stroke="#e0a800" stroke-width="2" stroke-linecap="round" />
+              </svg>
+              <span data-i18n="trust.3">15 минут в день без нагрузки на зрение</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Интерактивная сцена: лёгкий «3D-пластик» на SVG + CSS-перспективе -->
+        <div class="scene" id="scene" data-mode="idle">
+          <div class="scene__stage" id="stage">
+            <div class="scene__glow" aria-hidden="true"></div>
+
+            <svg class="robot" id="robot" viewBox="0 0 400 380" role="img"
+              aria-label="Робот-помощник Аки — маскот платформы">
+              <defs>
+                <linearGradient id="gBody" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0" stop-color="#fff" />
+                  <stop offset="1" stop-color="#dfe4ff" />
+                </linearGradient>
+                <linearGradient id="gHead" x1="0" y1="0" x2="1" y2="1">
+                  <stop offset="0" stop-color="#fff" />
+                  <stop offset="1" stop-color="#e7eaff" />
+                </linearGradient>
+                <linearGradient id="gVisor" x1="0" y1="0" x2="1" y2="1">
+                  <stop offset="0" stop-color="#2b3160" />
+                  <stop offset="1" stop-color="#1b2143" />
+                </linearGradient>
+                <linearGradient id="gArm" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0" stop-color="#6d5df0" />
+                  <stop offset="1" stop-color="#4436c9" />
+                </linearGradient>
+              </defs>
+
+              <ellipse cx="200" cy="352" rx="104" ry="17" fill="#1b2143" opacity=".1" />
+
+              <!-- руки -->
+              <rect x="86" y="212" width="36" height="92" rx="18" fill="url(#gArm)" />
+              <rect x="278" y="212" width="36" height="92" rx="18" fill="url(#gArm)" />
+              <circle cx="104" cy="308" r="21" fill="#fff" stroke="#dfe4ff" stroke-width="3" />
+              <circle cx="296" cy="308" r="21" fill="#fff" stroke="#dfe4ff" stroke-width="3" />
+
+              <!-- корпус -->
+              <rect x="118" y="196" width="164" height="128" rx="46" fill="url(#gBody)" stroke="#d4daff"
+                stroke-width="3" />
+              <rect x="150" y="226" width="100" height="70" rx="24" fill="#eeebff" />
+              <path d="M172 258c8 12 40 12 48 0" stroke="#5b4be8" stroke-width="5" stroke-linecap="round" fill="none" />
+              <circle cx="200" cy="196" r="9" fill="#16c79a" />
+
+              <!-- голова -->
+              <rect x="98" y="118" width="18" height="46" rx="9" fill="#6d5df0" />
+              <rect x="284" y="118" width="18" height="46" rx="9" fill="#6d5df0" />
+              <rect x="110" y="68" width="180" height="134" rx="50" fill="url(#gHead)" stroke="#d4daff"
+                stroke-width="3" />
+              <rect x="132" y="94" width="136" height="82" rx="38" fill="url(#gVisor)" />
+              <ellipse cx="200" cy="112" rx="52" ry="12" fill="#fff" opacity=".14" />
+
+              <!-- глаза -->
+              <g id="eyeL">
+                <circle cx="172" cy="134" r="17" fill="#fff" />
+                <circle class="robot__pupil" cx="172" cy="134" r="8" fill="#5b4be8" />
+                <circle cx="176" cy="130" r="3" fill="#fff" opacity=".9" />
+              </g>
+              <g id="eyeR">
+                <circle cx="228" cy="134" r="17" fill="#fff" />
+                <circle class="robot__pupil" cx="228" cy="134" r="8" fill="#5b4be8" />
+                <circle cx="232" cy="130" r="3" fill="#fff" opacity=".9" />
+              </g>
+              <rect class="robot__lid" x="150" y="112" width="100" height="46" rx="20" fill="#242a55" />
+
+              <!-- улыбка на визоре -->
+              <path d="M186 158c6 7 22 7 28 0" stroke="#16c79a" stroke-width="5" stroke-linecap="round" fill="none" />
+
+              <!-- антенна -->
+              <rect x="196" y="34" width="8" height="36" rx="4" fill="#b9c0ee" />
+              <circle cx="200" cy="30" r="15" fill="#ffc93c" />
+              <circle cx="200" cy="30" r="15" fill="none" stroke="#ffc93c" stroke-width="3" opacity=".45">
+                <animate attributeName="r" values="15;24;15" dur="2.6s" repeatCount="indefinite" />
+                <animate attributeName="opacity" values=".45;0;.45" dur="2.6s" repeatCount="indefinite" />
+              </circle>
+
+              <!-- РЕКВИЗИТ: берет художника -->
+              <g class="prop prop--beret">
+                <path d="M118 74c14-30 50-46 82-46s68 16 82 46c-30 14-52 18-82 18s-52-4-82-18z" fill="#ff6b6b" />
+                <circle cx="252" cy="36" r="11" fill="#ffc93c" />
+                <path d="M118 74c30 10 52 14 82 14s52-4 82-14" stroke="#e04f4f" stroke-width="4" fill="none" />
+              </g>
+
+              <!-- РЕКВИЗИТ: книга сказок -->
+              <g class="prop prop--book">
+                <path d="M112 268l88-16v76l-88 12z" fill="#fff" stroke="#5b4be8" stroke-width="4" />
+                <path d="M288 268l-88-16v76l88 12z" fill="#fff" stroke="#5b4be8" stroke-width="4" />
+                <path d="M200 252v76" stroke="#5b4be8" stroke-width="5" />
+                <path d="M130 282l52-9M130 298l52-9M218 273l52 9M218 289l52 9" stroke="#b9c0ee" stroke-width="4"
+                  stroke-linecap="round" />
+              </g>
+
+              <!-- РЕКВИЗИТ: джойстик -->
+              <g class="prop prop--joystick">
+                <rect x="126" y="262" width="148" height="66" rx="30" fill="#4436c9" />
+                <circle cx="162" cy="295" r="15" fill="#fff" opacity=".9" />
+                <path d="M162 288v14M155 295h14" stroke="#4436c9" stroke-width="4" stroke-linecap="round" />
+                <circle cx="234" cy="286" r="10" fill="#ffc93c" />
+                <circle cx="252" cy="304" r="10" fill="#16c79a" />
+              </g>
+            </svg>
+
+            <!-- Всплывающие карточки-результаты -->
+            <div class="scene__card scene__card--canvas" id="cardDraw" aria-live="polite">
+              <h4 data-i18n="scene.drawTitle">Холст ученика</h4>
+              <div class="canvas-art" id="canvasArt"></div>
+            </div>
+
+            <div class="scene__card scene__card--story" id="cardStory" aria-live="polite">
+              <h4 data-i18n="scene.storyTitle">Сказка, которую пишет ребёнок</h4>
+              <p class="story-text" id="storyText"></p>
+            </div>
+
+            <div class="scene__card scene__card--game" id="cardGame" aria-live="polite">
+              <h4 data-i18n="scene.gameTitle">Мини-игра: уровень 1</h4>
+              <div class="pix" id="pixGrid" aria-hidden="true"></div>
+            </div>
+          </div>
+
+          <div class="scene__triggers" role="group" aria-label="Попробуйте, что умеет робот Аки">
+            <button class="trigger" type="button" data-mode-btn="draw" aria-pressed="false">
+              <span aria-hidden="true">🎨</span><span data-i18n="scene.draw">Рисовать</span>
+            </button>
+            <button class="trigger" type="button" data-mode-btn="story" aria-pressed="false">
+              <span aria-hidden="true">📖</span><span data-i18n="scene.story">Сочинять</span>
+            </button>
+            <button class="trigger" type="button" data-mode-btn="game" aria-pressed="false">
+              <span aria-hidden="true">🕹️</span><span data-i18n="scene.game">Создавать игру</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================= WHY US / SAFETY ======================= -->
+    <section class="section section--tint" id="learn">
+      <div class="wrap">
+        <div class="section__head reveal">
+          <span class="eyebrow" data-i18n="learn.eyebrow">Чему учим</span>
+          <h2 data-i18n="learn.h2">Экран работает на развитие ребёнка, а не против него</h2>
+          <p data-i18n="learn.sub">Мы собрали платформу так, чтобы у родителя не осталось поводов для тревоги, а у
+            ребёнка — поводов бросить.</p>
+        </div>
+
+        <div class="cards">
+          <article class="card reveal">
+            <div class="card__ico card__ico--mint" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none">
+                <path d="M12 3l7 3v5.5c0 4.2-2.9 7.6-7 9-4.1-1.4-7-4.8-7-9V6l7-3z" fill="#fff" stroke="#16c79a"
+                  stroke-width="1.8" />
+                <path d="M9 12l2.2 2.2L15.5 10" stroke="#16c79a" stroke-width="2.2" stroke-linecap="round" />
+              </svg>
+            </div>
+            <h3 data-i18n="learn.c1.t">Закрытый безопасный контур</h3>
+            <p data-i18n="learn.c1.d">Дети работают в фильтруемой среде со строгим цензом 0+. Никакого открытого
+              интернета, рекламы, чужих сообщений и взрослого контента.</p>
+          </article>
+
+          <article class="card reveal">
+            <div class="card__ico card__ico--violet" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none">
+                <path d="M4 17l5-9 4 5 3-3 4 7H4z" fill="#fff" stroke="#5b4be8" stroke-width="1.8"
+                  stroke-linejoin="round" />
+                <circle cx="17" cy="6" r="2.4" fill="#ffc93c" stroke="#5b4be8" stroke-width="1.6" />
+              </svg>
+            </div>
+            <h3 data-i18n="learn.c2.t">Создатели, а не потребители</h3>
+            <p data-i18n="learn.c2.d">Ребёнок перестаёт бездумно листать короткие видео: он исследует механику
+              нейросетей и сам создаёт рисунки, сказки, ботов и мини-игры.</p>
+          </article>
+
+          <article class="card reveal">
+            <div class="card__ico card__ico--sun" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none">
+                <circle cx="12" cy="12" r="8.5" fill="#fff" stroke="#e0a800" stroke-width="1.8" />
+                <path d="M12 7.5V12l3.2 2" stroke="#e0a800" stroke-width="2.2" stroke-linecap="round" />
+              </svg>
+            </div>
+            <h3 data-i18n="learn.c3.t">Бережное микрообучение</h3>
+            <p data-i18n="learn.c3.d">Уроки упакованы в 15-минутные игровые квесты. Ребёнок не переутомляется,
+              соблюдается гигиена экранного времени, таймер мягко завершает занятие.</p>
+          </article>
+
+          <article class="card reveal">
+            <div class="card__ico card__ico--blue" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none">
+                <path d="M12 4a5.5 5.5 0 00-3.4 9.8V17h6.8v-3.2A5.5 5.5 0 0012 4z" fill="#fff" stroke="#2f7bff"
+                  stroke-width="1.8" />
+                <path d="M9.4 20h5.2" stroke="#2f7bff" stroke-width="2" stroke-linecap="round" />
+              </svg>
+            </div>
+            <h3 data-i18n="learn.c4.t">Навыки мышления, а не просто кнопки</h3>
+            <p data-i18n="learn.c4.d">Развиваем логику, последовательность шагов, критический взгляд на информацию и
+              умение чётко формулировать мысль — это работает и в школе, и в жизни.</p>
+          </article>
+        </div>
+
+        <div id="safety" class="myth reveal">
+          <div>
+            <b data-i18n="safety.m1.q">«ИИ отупляет — ребёнок разучится думать»</b>
+            <span data-i18n="safety.m1.a">Каждый квест начинается с гипотезы ребёнка и заканчивается проверкой
+              результата. ИИ здесь — инструмент, который нужно уметь спросить и перепроверить.</span>
+          </div>
+          <div>
+            <b data-i18n="safety.m2.q">«Он будет часами залипать в экран»</b>
+            <span data-i18n="safety.m2.a">Квест длится 15 минут, дальше платформа предлагает офлайн-задание. Родитель
+              видит время в кабинете и может выставить дневной лимит.</span>
+          </div>
+          <div>
+            <b data-i18n="safety.m3.q">«Контент и данные небезопасны»</b>
+            <span data-i18n="safety.m3.a">Двойная модерация промптов и результатов, никаких персональных данных ребёнка
+              в открытом виде, вход в кабинет — через родителя или учителя.</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================= CURRICULUM ======================= -->
+    <section class="section" id="program">
+      <div class="wrap">
+        <div class="section__head reveal">
+          <span class="eyebrow" data-i18n="prog.eyebrow">Программа по классам</span>
+          <h2 data-i18n="prog.h2">Два уровня, собранные под возраст и школьную нагрузку</h2>
+          <p data-i18n="prog.sub">Переключите вкладку, чтобы увидеть, что ребёнок освоит за первый модуль.</p>
+        </div>
+
+        <div class="tabs" role="tablist" aria-label="Уровни программы">
+          <button class="tab" type="button" role="tab" id="tab-1" aria-controls="panel-1" aria-selected="true"
+            data-i18n="prog.tab1">1–2 классы · 7–8 лет</button>
+          <button class="tab" type="button" role="tab" id="tab-2" aria-controls="panel-2" aria-selected="false"
+            data-i18n="prog.tab2">3–4 классы · 9–10 лет</button>
+        </div>
+
+        <div class="panel" id="panel-1" role="tabpanel" aria-labelledby="tab-1" tabindex="0">
+          <div>
+            <span class="panel__level" data-i18n="prog.p1.level">Уровень «Исследователь»</span>
+            <h3 data-i18n="prog.p1.t">Образное мышление и первые алгоритмы</h3>
+            <p class="panel__focus" data-i18n="prog.p1.focus">Фокус модуля: образное мышление, простейшие алгоритмы,
+              голосовые команды. Ребёнок понимает, что компьютером можно управлять словами и шагами.</p>
+            <ul class="panel__meta">
+              <li>🧩 <span><b data-i18n="prog.fmtLabel">Формат:</b> <span data-i18n="prog.p1.fmt">без сложных текстов,
+                    поддержка голосового ввода и крупные кликабельные блоки</span></span></li>
+              <li>⏱ <span><b data-i18n="prog.lenLabel">Длительность:</b> <span data-i18n="prog.p1.len">12 квестов по 15
+                    минут, 2–3 занятия в неделю</span></span></li>
+              <li>🏅 <span><b data-i18n="prog.resLabel">Результат модуля:</b> <span data-i18n="prog.p1.res">собственная
+                    иллюстрированная аудиосказка</span></span></li>
+            </ul>
+          </div>
+          <ul class="skills">
+            <li><span class="num" aria-hidden="true">1</span><span data-i18n="prog.p1.s1"><strong>Как компьютер слышит и
+                  видит.</strong> Разбираем на игре, как машина распознаёт звуки и картинки.</span></li>
+            <li><span class="num" aria-hidden="true">2</span><span data-i18n="prog.p1.s2"><strong>Запрос-пазл.</strong>
+                Ребёнок собирает запрос к ИИ из визуальных карточек — учится задавать точные вопросы.</span></li>
+            <li><span class="num" aria-hidden="true">3</span><span data-i18n="prog.p1.s3"><strong>Своя
+                  аудиосказка.</strong> Придумывает героя, генерирует иллюстрации и озвучивает историю голосом.</span>
+            </li>
+            <li><span class="num" aria-hidden="true">4</span><span data-i18n="prog.p1.s4"><strong>Шаг за шагом.</strong>
+                Первые алгоритмы: последовательность, повтор, «если — то» на уровне игровых команд.</span></li>
+          </ul>
+        </div>
+
+        <div class="panel" id="panel-2" role="tabpanel" aria-labelledby="tab-2" tabindex="0" hidden>
+          <div>
+            <span class="panel__level" data-i18n="prog.p2.level">Уровень «Инженер»</span>
+            <h3 data-i18n="prog.p2.t">Логика, промпт-дизайн и цифровая безопасность</h3>
+            <p class="panel__focus" data-i18n="prog.p2.focus">Фокус модуля: логические условия, циклы, промпт-дизайн и
+              цифровая безопасность. Ребёнок проектирует поведение программы и проверяет факты.</p>
+            <ul class="panel__meta">
+              <li>🧩 <span><b data-i18n="prog.fmtLabel">Формат:</b> <span data-i18n="prog.p2.fmt">визуальное блочное
+                    программирование, текстовые промпты, проектная работа</span></span></li>
+              <li>⏱ <span><b data-i18n="prog.lenLabel">Длительность:</b> <span data-i18n="prog.p2.len">16 квестов по 15
+                    минут + защита проекта</span></span></li>
+              <li>🏅 <span><b data-i18n="prog.resLabel">Результат модуля:</b> <span data-i18n="prog.p2.res">свой
+                    чат-бот-помощник и мини-игра с ветвлением</span></span></li>
+            </ul>
+          </div>
+          <ul class="skills">
+            <li><span class="num" aria-hidden="true">1</span><span data-i18n="prog.p2.s1"><strong>Как устроены
+                  нейросети.</strong> На простых моделях показываем, что такое обучение на примерах и ошибка.</span>
+            </li>
+            <li><span class="num" aria-hidden="true">2</span><span data-i18n="prog.p2.s2"><strong>Ветвящиеся
+                  сценарии.</strong> Условия и циклы: ребёнок собирает историю, где выбор меняет финал.</span></li>
+            <li><span class="num" aria-hidden="true">3</span><span data-i18n="prog.p2.s3"><strong>Свой
+                  чат-бот-помощник.</strong> Формулирует роль, правила и запреты для бота — это и есть
+                промпт-дизайн.</span></li>
+            <li><span class="num" aria-hidden="true">4</span><span data-i18n="prog.p2.s4"><strong>Фактчекинг.</strong>
+                Учится замечать выдумки нейросети и проверять данные по источникам.</span></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================= SHOWCASE ======================= -->
+    <section class="section section--tint" id="showcase">
+      <div class="wrap">
+        <div class="section__head reveal">
+          <span class="eyebrow" data-i18n="show.eyebrow">Витрина работ</span>
+          <h2 data-i18n="show.h2">Что создают наши ученики уже на первой неделе</h2>
+          <p data-i18n="show.sub">Это не скриншоты из презентации — нажмите на любой проект и попробуйте его сами.</p>
+        </div>
+
+        <div class="showcase">
+          <!-- Проект 1: сказка -->
+          <article class="work reveal">
+            <div class="work__media">
+              <span class="work__tag" data-i18n="show.w1.tag">Сказка</span>
+              <svg viewBox="0 0 320 200" aria-hidden="true">
+                <rect width="320" height="200" fill="#1b2143" />
+                <circle cx="60" cy="44" r="2" fill="#fff" />
+                <circle cx="120" cy="26" r="1.6" fill="#fff" />
+                <circle cx="250" cy="40" r="2.2" fill="#fff" />
+                <circle cx="285" cy="90" r="1.6" fill="#fff" />
+                <circle cx="34" cy="120" r="1.8" fill="#fff" />
+                <circle cx="230" cy="150" r="34" fill="#ffc93c" opacity=".25" />
+                <circle cx="230" cy="150" r="24" fill="#ffc93c" />
+                <g>
+                  <ellipse cx="140" cy="120" rx="46" ry="38" fill="#6d5df0" />
+                  <path d="M104 96l-6-22 26 12zM176 96l6-22-26 12z" fill="#6d5df0" />
+                  <circle cx="126" cy="116" r="7" fill="#fff" />
+                  <circle cx="154" cy="116" r="7" fill="#fff" />
+                  <circle cx="127" cy="117" r="3" fill="#1b2143" />
+                  <circle cx="155" cy="117" r="3" fill="#1b2143" />
+                  <path d="M134 132c4 5 12 5 16 0" stroke="#fff" stroke-width="3" stroke-linecap="round" fill="none" />
+                  <rect x="118" y="70" width="44" height="14" rx="7" fill="#16c79a" opacity=".9" />
+                </g>
+              </svg>
+            </div>
+            <div class="work__body">
+              <h3 data-i18n="show.w1.t">Интерактивная сказка про космического кота</h3>
+              <p data-i18n="show.w1.d">Сгенерирована второклассником: 6 страниц, свои иллюстрации и озвучка. Финал
+                зависит от выбора читателя.</p>
+              <div class="work__demo" id="demoStory">
+                <p data-i18n="show.w1.page1">Кот Барс жил на станции «Астана-Орбита» и очень хотел найти планету, где
+                  растёт рыба…</p>
+              </div>
+              <button class="btn btn--ghost" type="button" id="btnStoryNext" data-i18n="show.w1.btn">Читать
+                дальше</button>
+            </div>
+          </article>
+
+          <!-- Проект 2: классификатор -->
+          <article class="work reveal">
+            <div class="work__media">
+              <span class="work__tag" data-i18n="show.w2.tag">ИИ-модель</span>
+              <svg viewBox="0 0 320 200" aria-hidden="true">
+                <rect width="320" height="200" fill="#e0f8f1" />
+                <g stroke="#16c79a" stroke-width="2.5" fill="none">
+                  <path d="M60 60h60M60 100h60M60 140h60" />
+                  <path d="M120 60l60 40M120 100h60M120 140l60-40" />
+                  <path d="M180 100h60" />
+                </g>
+                <circle cx="60" cy="60" r="13" fill="#fff" stroke="#16c79a" stroke-width="2.5" />
+                <circle cx="60" cy="100" r="13" fill="#fff" stroke="#16c79a" stroke-width="2.5" />
+                <circle cx="60" cy="140" r="13" fill="#fff" stroke="#16c79a" stroke-width="2.5" />
+                <circle cx="120" cy="60" r="13" fill="#fff" stroke="#16c79a" stroke-width="2.5" />
+                <circle cx="120" cy="100" r="13" fill="#fff" stroke="#16c79a" stroke-width="2.5" />
+                <circle cx="120" cy="140" r="13" fill="#fff" stroke="#16c79a" stroke-width="2.5" />
+                <circle cx="180" cy="100" r="15" fill="#16c79a" />
+                <rect x="230" y="70" width="60" height="60" rx="18" fill="#fff" stroke="#16c79a" stroke-width="2.5" />
+                <path d="M248 100l8 9 16-18" stroke="#16c79a" stroke-width="4" stroke-linecap="round" fill="none" />
+              </svg>
+            </div>
+            <div class="work__body">
+              <h3 data-i18n="show.w2.t">Модель, которая отличает питомцев от диких животных</h3>
+              <p data-i18n="show.w2.d">Ребёнок сам собрал обучающие примеры и проверил, где модель ошибается. Выберите
+                животное — увидите ответ модели.</p>
+              <div class="work__demo">
+                <div class="chips" id="clsChips">
+                  <button class="chip" type="button" data-animal="cat" data-i18n="show.w2.cat">🐈 Кошка</button>
+                  <button class="chip" type="button" data-animal="wolf" data-i18n="show.w2.wolf">🐺 Волк</button>
+                  <button class="chip" type="button" data-animal="hamster"
+                    data-i18n="show.w2.hamster">🐹 Хомяк</button>
+                  <button class="chip" type="button" data-animal="fox" data-i18n="show.w2.fox">🦊 Лиса</button>
+                </div>
+                <div class="meter" aria-hidden="true"><i id="clsMeter"></i></div>
+                <p id="clsOut" aria-live="polite" data-i18n="show.w2.hint">Нажмите на животное — модель покажет свою
+                  уверенность.</p>
+              </div>
+            </div>
+          </article>
+
+          <!-- Проект 3: мини-игра -->
+          <article class="work reveal">
+            <div class="work__media">
+              <span class="work__tag" data-i18n="show.w3.tag">Мини-игра</span>
+              <svg viewBox="0 0 320 200" aria-hidden="true">
+                <rect width="320" height="200" fill="#eeebff" />
+                <rect x="40" y="46" width="240" height="108" rx="22" fill="#fff" stroke="#5b4be8" stroke-width="3" />
+                <rect x="62" y="70" width="120" height="12" rx="6" fill="#dfe4ff" />
+                <rect x="62" y="94" width="170" height="12" rx="6" fill="#dfe4ff" />
+                <rect x="62" y="118" width="86" height="14" rx="7" fill="#5b4be8" />
+                <rect x="160" y="118" width="86" height="14" rx="7" fill="#16c79a" />
+                <circle cx="252" cy="76" r="16" fill="#ffc93c" />
+              </svg>
+            </div>
+            <div class="work__body">
+              <h3 data-i18n="show.w3.t">Текстовая мини-игра с ИИ-персонажем</h3>
+              <p data-i18n="show.w3.d">Диалоговый герой отвечает по правилам, которые придумал четвероклассник. Сделайте
+                выбор — история пойдёт по другой ветке.</p>
+              <div class="work__demo">
+                <p id="gameOut" aria-live="polite" data-i18n="show.w3.start">Хранитель библиотеки: «Чтобы пройти, назови
+                  то, что растёт, но не живое».</p>
+                <div class="chips" id="gameChips">
+                  <button class="chip" type="button" data-answer="crystal" data-i18n="show.w3.a1">Кристалл</button>
+                  <button class="chip" type="button" data-answer="cat" data-i18n="show.w3.a2">Котёнок</button>
+                </div>
+              </div>
+            </div>
+          </article>
+        </div>
+
+        <div class="quote reveal" id="reviews">
+          <span class="quote__ava" aria-hidden="true">А</span>
+          <div>
+            <p data-i18n="show.q1">«Дочка второй месяц сама садится за квесты и потом полчаса рассказывает нам, как
+              обучала свою модель. У неё горят глаза — впервые от экрана она уходит с чем-то своим, а не с пустой
+              головой.»</p>
+            <cite data-i18n="show.q1.a">Айгерим, мама Амины, 2 класс, Алматы</cite>
+          </div>
+        </div>
+
+        <div class="cards reveal" style="margin-top:24px">
+          <article class="card">
+            <p data-i18n="show.q2">«Сын перестал просить YouTube после школы: говорит, что ему “надо докрутить бота”.
+              15 минут — и он спокойно закрывает ноутбук, скандалов больше нет.»</p>
+            <cite class="plan__for" style="margin:12px 0 0;display:block" data-i18n="show.q2.a">Ержан, папа Данияра,
+              3 класс</cite>
+          </article>
+          <article class="card">
+            <p data-i18n="show.q3">«Взяла платформу на кружок в 4 классе. Дети впервые спорили о том, где нейросеть
+              соврала, — это ровно тот навык, которого мне не хватало на уроках.»</p>
+            <cite class="plan__for" style="margin:12px 0 0;display:block" data-i18n="show.q3.a">Гульнара С., учитель
+              начальных классов</cite>
+          </article>
+          <article class="card">
+            <p data-i18n="show.q4">«Нравится, что нет чатов с незнакомцами и рекламы. Я вижу отчёт по времени и точно
+              знаю, чем ребёнок занят.»</p>
+            <cite class="plan__for" style="margin:12px 0 0;display:block" data-i18n="show.q4.a">Динара, мама Алихана,
+              1 класс</cite>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================= B2B ======================= -->
+    <section class="section" id="schools">
+      <div class="wrap b2b">
+        <div class="reveal">
+          <span class="eyebrow" data-i18n="b2b.eyebrow">Школам и учителям</span>
+          <h2 data-i18n="b2b.h2">Готовое решение для внедрения в школьную программу</h2>
+          <p data-i18n="b2b.sub">Не нужно быть ИТ-специалистом: вы получаете методику, дашборд и материалы, а платформа
+            берёт на себя техническую часть урока.</p>
+
+          <ul class="b2b__list">
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <rect x="4" y="3.5" width="16" height="17" rx="3" fill="#eeebff" stroke="#5b4be8" stroke-width="1.8" />
+                <path d="M8 8h8M8 12h8M8 16h5" stroke="#5b4be8" stroke-width="1.8" stroke-linecap="round" />
+              </svg>
+              <span><b data-i18n="b2b.i1.t">Поурочные методические планы</b><span data-i18n="b2b.i1.d">Сценарии занятий
+                  с целями, таймингом и заданиями, соответствующие стандартам начального образования.</span></span>
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <rect x="3" y="4" width="18" height="13" rx="3" fill="#e0f8f1" stroke="#16c79a" stroke-width="1.8" />
+                <path d="M7 13l3-4 3 3 3.5-5" stroke="#16c79a" stroke-width="2" stroke-linecap="round" />
+                <path d="M9 20h6" stroke="#16c79a" stroke-width="2" stroke-linecap="round" />
+              </svg>
+              <span><b data-i18n="b2b.i2.t">Учительский дашборд</b><span data-i18n="b2b.i2.d">Прогресс всего класса,
+                  время прохождения и вовлечённость — в один клик, с выгрузкой отчёта.</span></span>
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M12 3l2.6 5.6 6 .7-4.4 4.2 1.1 6-5.3-3-5.3 3 1.1-6L3.4 9.3l6-.7z" fill="#fff5da"
+                  stroke="#e0a800" stroke-width="1.8" stroke-linejoin="round" />
+              </svg>
+              <span><b data-i18n="b2b.i3.t">Материалы для открытых уроков</b><span data-i18n="b2b.i3.d">Готовые
+                  сценарии «Часа ИИ», классных часов и проектных недель — с раздатками и презентациями.</span></span>
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <circle cx="9" cy="9" r="3.4" fill="#e6f0ff" stroke="#2f7bff" stroke-width="1.8" />
+                <circle cx="16.5" cy="10.5" r="2.6" fill="#e6f0ff" stroke="#2f7bff" stroke-width="1.8" />
+                <path d="M3.5 19c.6-3 3-4.6 5.5-4.6S14 16 14.6 19M16 14.6c2 .3 3.7 1.8 4.2 4.4" stroke="#2f7bff"
+                  stroke-width="1.8" stroke-linecap="round" />
+              </svg>
+              <span><b data-i18n="b2b.i4.t">Обучение педагогов и поддержка</b><span data-i18n="b2b.i4.d">Онбординг для
+                  учителей, чат методиста и помощь на первых уроках — включены в лицензию.</span></span>
+            </li>
+          </ul>
+        </div>
+
+        <form class="form reveal" id="formSchool" novalidate>
+          <div class="form__body">
+            <h3 data-i18n="b2b.form.t">Заявка на демо-доступ для школы</h3>
+            <p class="form__hint" data-i18n="b2b.form.h">Ответим в течение рабочего дня и покажем платформу на вашем
+              классе.</p>
+
+            <div class="field">
+              <label for="sName" data-i18n="form.name">Имя</label>
+              <input id="sName" name="name" type="text" autocomplete="name" required data-i18n-ph="form.namePh"
+                placeholder="Как к вам обращаться">
+              <span class="err" data-i18n="form.errName">Укажите, пожалуйста, имя</span>
+            </div>
+
+            <div class="field">
+              <label for="sOrg" data-i18n="form.org">Школа / организация</label>
+              <input id="sOrg" name="org" type="text" autocomplete="organization" required data-i18n-ph="form.orgPh"
+                placeholder="Например, гимназия №25">
+              <span class="err" data-i18n="form.errOrg">Укажите название организации</span>
+            </div>
+
+            <div class="field--row">
+              <div class="field">
+                <label for="sPhone" data-i18n="form.phone">Телефон / WhatsApp</label>
+                <input id="sPhone" name="phone" type="tel" inputmode="tel" autocomplete="tel" required
+                  data-i18n-ph="form.phonePh" placeholder="+7 (___) ___-__-__">
+                <span class="err" data-i18n="form.errPhone">Введите номер не короче 10 цифр</span>
+              </div>
+              <div class="field">
+                <label for="sCount" data-i18n="form.count">Количество учеников</label>
+                <select id="sCount" name="count">
+                  <option value="1-30" data-i18n="form.count1">До 30 (один класс)</option>
+                  <option value="30-150" data-i18n="form.count2">30–150</option>
+                  <option value="150-500" data-i18n="form.count3">150–500</option>
+                  <option value="500+" data-i18n="form.count4">Больше 500</option>
+                </select>
+              </div>
+            </div>
+
+            <button class="btn btn--block btn--lg" type="submit" data-i18n="b2b.form.btn">Получить демо-доступ для
+              школы</button>
+            <p class="form__legal" data-i18n="b2b.form.legal">Нажимая кнопку, вы соглашаетесь с политикой обработки
+              персональных данных. Мы не передаём контакты третьим лицам.</p>
+          </div>
+
+          <div class="form__ok" role="status">
+            <span aria-hidden="true">🎉</span>
+            <span data-i18n="b2b.form.ok">Заявка принята! Методист свяжется с вами в течение рабочего дня.</span>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <!-- ======================= PRICING ======================= -->
+    <section class="section section--tint" id="pricing">
+      <div class="wrap">
+        <div class="section__head reveal">
+          <span class="eyebrow" data-i18n="price.eyebrow">Тарифы</span>
+          <h2 data-i18n="price.h2">Прозрачные тарифы без скрытых платежей</h2>
+          <p data-i18n="price.sub">Первый квест бесплатный и не требует банковской карты. Отменить подписку можно в один
+            клик.</p>
+        </div>
+
+        <div class="plans">
+          <article class="plan reveal">
+            <h3 data-i18n="price.p1.t">Базовый</h3>
+            <p class="plan__for" data-i18n="price.p1.for">Самостоятельное обучение</p>
+            <p class="plan__price">4 900 ₸<small data-i18n="price.month">в месяц за одного ребёнка</small></p>
+            <ul class="plan__feat">
+              <li><svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <circle cx="12" cy="12" r="10" fill="#e0f8f1" />
+                  <path d="M8 12.4l2.6 2.6L16 9.6" stroke="#16c79a" stroke-width="2.2" stroke-linecap="round" />
+                </svg><span data-i18n="price.p1.f1">Полный доступ к платформе и интерактивным урокам</span></li>
+              <li><svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <circle cx="12" cy="12" r="10" fill="#e0f8f1" />
+                  <path d="M8 12.4l2.6 2.6L16 9.6" stroke="#16c79a" stroke-width="2.2" stroke-linecap="round" />
+                </svg><span data-i18n="price.p1.f2">Виртуальная песочница для рисунков, сказок и мини-игр</span></li>
+              <li><svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <circle cx="12" cy="12" r="10" fill="#e0f8f1" />
+                  <path d="M8 12.4l2.6 2.6L16 9.6" stroke="#16c79a" stroke-width="2.2" stroke-linecap="round" />
+                </svg><span data-i18n="price.p1.f3">Игровые награды, уровни и коллекция достижений</span></li>
+              <li><svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <circle cx="12" cy="12" r="10" fill="#e0f8f1" />
+                  <path d="M8 12.4l2.6 2.6L16 9.6" stroke="#16c79a" stroke-width="2.2" stroke-linecap="round" />
+                </svg><span data-i18n="price.p1.f4">Родительский кабинет: прогресс и лимит экранного времени</span></li>
+            </ul>
+            <button class="btn btn--ghost btn--block" type="button" data-open-modal
+              data-i18n="price.p1.btn">Попробовать бесплатно</button>
+          </article>
+
+          <article class="plan plan--best reveal">
+            <span class="plan__badge" data-i18n="price.best">Выбор родителей</span>
+            <h3 data-i18n="price.p2.t">Премиум</h3>
+            <p class="plan__for" data-i18n="price.p2.for">С наставником</p>
+            <p class="plan__price">11 900 ₸<small data-i18n="price.month">в месяц за одного ребёнка</small></p>
+            <ul class="plan__feat">
+              <li><svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <circle cx="12" cy="12" r="10" fill="#eeebff" />
+                  <path d="M8 12.4l2.6 2.6L16 9.6" stroke="#5b4be8" stroke-width="2.2" stroke-linecap="round" />
+                </svg><span data-i18n="price.p2.f1">Все возможности «Базового»</span></li>
+              <li><svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <circle cx="12" cy="12" r="10" fill="#eeebff" />
+                  <path d="M8 12.4l2.6 2.6L16 9.6" stroke="#5b4be8" stroke-width="2.2" stroke-linecap="round" />
+                </svg><span data-i18n="price.p2.f2">Еженедельный разбор проектов с живым тьютором</span></li>
+              <li><svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <circle cx="12" cy="12" r="10" fill="#eeebff" />
+                  <path d="M8 12.4l2.6 2.6L16 9.6" stroke="#5b4be8" stroke-width="2.2" stroke-linecap="round" />
+                </svg><span data-i18n="price.p2.f3">Голосовая поддержка ребёнка во время квеста</span></li>
+              <li><svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <circle cx="12" cy="12" r="10" fill="#eeebff" />
+                  <path d="M8 12.4l2.6 2.6L16 9.6" stroke="#5b4be8" stroke-width="2.2" stroke-linecap="round" />
+                </svg><span data-i18n="price.p2.f4">Расширенная библиотека ассетов и шаблонов проектов</span></li>
+            </ul>
+            <button class="btn btn--block" type="button" data-open-modal data-i18n="price.p2.btn">Начать с
+              наставником</button>
+          </article>
+
+          <article class="plan reveal">
+            <h3 data-i18n="price.p3.t">Для классов и школ</h3>
+            <p class="plan__for" data-i18n="price.p3.for">Лицензии для организаций</p>
+            <p class="plan__price" data-i18n="price.p3.price">По запросу<small
+                data-i18n="price.p3.priceSub">от 30 лицензий, оплата по договору</small></p>
+            <ul class="plan__feat">
+              <li><svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <circle cx="12" cy="12" r="10" fill="#e6f0ff" />
+                  <path d="M8 12.4l2.6 2.6L16 9.6" stroke="#2f7bff" stroke-width="2.2" stroke-linecap="round" />
+                </svg><span data-i18n="price.p3.f1">Корпоративный доступ по лицензиям на класс или школу</span></li>
+              <li><svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <circle cx="12" cy="12" r="10" fill="#e6f0ff" />
+                  <path d="M8 12.4l2.6 2.6L16 9.6" stroke="#2f7bff" stroke-width="2.2" stroke-linecap="round" />
+                </svg><span data-i18n="price.p3.f2">Личный кабинет учителя и отчёты по классам</span></li>
+              <li><svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <circle cx="12" cy="12" r="10" fill="#e6f0ff" />
+                  <path d="M8 12.4l2.6 2.6L16 9.6" stroke="#2f7bff" stroke-width="2.2" stroke-linecap="round" />
+                </svg><span data-i18n="price.p3.f3">Методическая поддержка и обучение преподавателей</span></li>
+              <li><svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <circle cx="12" cy="12" r="10" fill="#e6f0ff" />
+                  <path d="M8 12.4l2.6 2.6L16 9.6" stroke="#2f7bff" stroke-width="2.2" stroke-linecap="round" />
+                </svg><span data-i18n="price.p3.f4">Закрывающие документы и интеграция в расписание</span></li>
+            </ul>
+            <a class="btn btn--mint btn--block" href="#schools" data-i18n="price.p3.btn">Запросить демо для школы</a>
+          </article>
+        </div>
+
+        <p class="plans__note" data-i18n="price.note">Оплата картой или по счёту. 14 дней на возврат, если платформа не
+          подошла ребёнку.</p>
+      </div>
+    </section>
+
+    <!-- ======================= FAQ ======================= -->
+    <section class="section" id="faq">
+      <div class="wrap">
+        <div class="section__head reveal">
+          <span class="eyebrow" data-i18n="faq.eyebrow">Частые вопросы</span>
+          <h2 data-i18n="faq.h2">Отвечаем на то, что спрашивают родители чаще всего</h2>
+        </div>
+
+        <div class="faq reveal">
+          <details>
+            <summary data-i18n="faq.q1">Не рано ли изучать ИИ в 1–2 классе?</summary>
+            <p data-i18n="faq.a1">Нет: мы не учим программировать нейросети, а показываем, как машина «думает», и учим
+              задавать точные вопросы. Это те же навыки, что развивают математика и чтение, — последовательность,
+              сравнение, проверка. Всё в игровой форме, без терминов и домашних заданий.</p>
+          </details>
+          <details>
+            <summary data-i18n="faq.q2">Нужно ли ребёнку уметь быстро печатать на клавиатуре?</summary>
+            <p data-i18n="faq.a2">Не нужно. На уровне «Исследователь» задания собираются перетаскиванием карточек
+              (drag-and-drop) и голосом — ребёнок просто говорит, а платформа распознаёт речь. Печать появляется
+              постепенно, в 3–4 классе, и всегда остаётся опцией, а не барьером.</p>
+          </details>
+          <details>
+            <summary data-i18n="faq.q3">С каких устройств можно заниматься?</summary>
+            <p data-i18n="faq.a3">Планшет, ноутбук или ПК — платформа работает в браузере, ничего устанавливать не надо.
+              Нужен интернет и наушники для голосовых заданий. На смартфоне доступна часть квестов, но для проектов мы
+              рекомендуем экран от 10 дюймов.</p>
+          </details>
+          <details>
+            <summary data-i18n="faq.q4">Как платформа защищает зрение и время ребёнка?</summary>
+            <p data-i18n="faq.a4">Квест длится 15 минут, после чего включается пауза с офлайн-заданием. Светлая тема без
+              резких контрастов и мелкого текста, крупные элементы, никакой бесконечной прокрутки и автоплея. В
+              родительском кабинете вы задаёте дневной лимит и видите фактическое время.</p>
+          </details>
+          <details>
+            <summary data-i18n="faq.q5">Что происходит с данными и работами ребёнка?</summary>
+            <p data-i18n="faq.a5">Аккаунт создаёт взрослый, ребёнок входит по коду без публичного профиля. Работы
+              хранятся в закрытом кабинете, публикация — только с согласия родителя. Мы не показываем рекламу и не
+              передаём данные третьим лицам.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================= FINAL CTA ======================= -->
+    <section class="section" id="start">
+      <div class="wrap">
+        <div class="final reveal">
+          <h2 data-i18n="final.h2">Попробуйте первый интерактивный квест прямо сейчас — это бесплатно и займёт всего
+            10 минут</h2>
+          <p data-i18n="final.sub">Оставьте телефон или email — пришлём ссылку на квест и короткую инструкцию для
+            родителя.</p>
+
+          <form id="formLead" novalidate>
+            <label class="sr-only" for="leadContact" data-i18n="final.label">Телефон или email</label>
+            <input id="leadContact" name="contact" type="text" required data-i18n-ph="final.ph"
+              placeholder="+7 (___) ___-__-__ или email">
+            <button class="btn btn--sun btn--lg" type="submit" data-i18n="final.btn">Получить квест</button>
+            <div class="form__ok" role="status">
+              <span aria-hidden="true">🎉</span>
+              <span data-i18n="final.ok">Готово! Ссылка на первый квест уже летит к вам.</span>
+            </div>
+          </form>
+          <p class="final__legal" data-i18n="final.legal">Без спама и звонков «в никуда». Одно письмо со ссылкой и
+            памяткой по экранному времени.</p>
+
+          <ul class="final__stats">
+            <li><b>15</b><span data-i18n="final.s1">минут — один квест</span></li>
+            <li><b>28</b><span data-i18n="final.s2">квеста в первом году</span></li>
+            <li><b>0+</b><span data-i18n="final.s3">возрастной ценз контента</span></li>
+            <li><b>1&nbsp;200+</b><span data-i18n="final.s4">детей уже учатся</span></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ======================= FOOTER ======================= -->
+  <footer class="footer">
+    <div class="wrap">
+      <div class="footer__grid">
+        <div class="footer__about">
+          <a class="logo" href="#top" aria-label="AQYL — на главную">
+            <span class="logo__mark" aria-hidden="true">
+              <svg viewBox="0 0 32 32" fill="none">
+                <rect x="5" y="10" width="22" height="16" rx="7" fill="#fff" />
+                <circle cx="12" cy="18" r="2.6" fill="#5b4be8" />
+                <circle cx="20" cy="18" r="2.6" fill="#5b4be8" />
+                <rect x="15" y="3" width="2" height="7" rx="1" fill="#ffc93c" />
+                <circle cx="16" cy="3.2" r="2.8" fill="#ffc93c" />
+              </svg>
+            </span>
+            <span>AQYL</span>
+          </a>
+          <p data-i18n="footer.about">Интерактивная игровая платформа по обучению искусственному интеллекту,
+            алгоритмическому мышлению и логике для детей 7–10 лет.</p>
+        </div>
+
+        <div>
+          <h4 data-i18n="footer.product">Платформа</h4>
+          <ul>
+            <li><a href="#learn" data-i18n="nav.learn">Чему учим</a></li>
+            <li><a href="#program" data-i18n="nav.program">Программа по классам</a></li>
+            <li><a href="#showcase" data-i18n="footer.works">Работы учеников</a></li>
+            <li><a href="#pricing" data-i18n="nav.pricing">Тарифы</a></li>
+            <li><a href="#faq" data-i18n="footer.faq">Вопросы и ответы</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 data-i18n="footer.docs">Документы</h4>
+          <ul>
+            <li><a href="#terms" data-i18n="footer.terms">Пользовательское соглашение</a></li>
+            <li><a href="#privacy" data-i18n="footer.privacy">Политика обработки персональных данных детей</a></li>
+            <li><a href="#offer" data-i18n="footer.offer">Публичная оферта</a></li>
+            <li><a href="#refund" data-i18n="footer.refund">Условия возврата</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 data-i18n="footer.care">Служба заботы</h4>
+          <ul>
+            <li><a href="tel:+77000000000">+7 700 000 00 00</a></li>
+            <li><a href="mailto:care@aqyl.ai">care@aqyl.ai</a></li>
+            <li data-i18n="footer.hours">Пн–Сб, 09:00–19:00 (GMT+5)</li>
+          </ul>
+          <div class="footer__care" style="margin-top:12px">
+            <a href="https://t.me/aqyl_care" rel="noopener">Telegram</a>
+            <a href="https://wa.me/77000000000" rel="noopener">WhatsApp</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer__bottom">
+        <span data-i18n="footer.legal">ТОО «AQYL Education», БИН 000000000000, Казахстан, г. Алматы, ул. Примерная 1,
+          офис 20</span>
+        <span>© <span id="year">2026</span> AQYL</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ======================= MODAL: express registration ======================= -->
+  <div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal__box">
+      <button class="modal__close" type="button" data-close-modal aria-label="Закрыть">×</button>
+      <div class="modal__steps" aria-hidden="true"><i></i><i></i><i></i></div>
+
+      <form class="form" id="formTrial" novalidate style="border:0;box-shadow:none;padding:0">
+        <div class="form__body">
+          <h3 id="modalTitle" data-i18n="modal.t">Первый квест бесплатно</h3>
+          <p class="form__hint" data-i18n="modal.h">40 секунд на регистрацию, без привязки банковской карты. Доступ
+            откроется сразу после подтверждения.</p>
+
+          <div class="field">
+            <label for="tName" data-i18n="modal.child">Имя ребёнка</label>
+            <input id="tName" name="child" type="text" required data-i18n-ph="modal.childPh" placeholder="Например, Амина">
+            <span class="err" data-i18n="form.errName">Укажите, пожалуйста, имя</span>
+          </div>
+
+          <div class="field">
+            <label for="tGrade" data-i18n="modal.grade">Класс</label>
+            <select id="tGrade" name="grade">
+              <option value="1" data-i18n="modal.g1">1 класс</option>
+              <option value="2" data-i18n="modal.g2">2 класс</option>
+              <option value="3" data-i18n="modal.g3">3 класс</option>
+              <option value="4" data-i18n="modal.g4">4 класс</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="tContact" data-i18n="modal.contact">Телефон или email родителя</label>
+            <input id="tContact" name="contact" type="text" required data-i18n-ph="final.ph"
+              placeholder="+7 (___) ___-__-__ или email">
+            <span class="err" data-i18n="form.errContact">Введите телефон (от 10 цифр) или email</span>
+          </div>
+
+          <button class="btn btn--block btn--lg" type="submit" data-i18n="modal.btn">Открыть первый квест</button>
+          <p class="form__legal" data-i18n="modal.legal">Аккаунт создаёт взрослый. Ребёнок входит по коду, без
+            публичного профиля и чатов с незнакомцами.</p>
+        </div>
+
+        <div class="form__ok" role="status">
+          <span aria-hidden="true">🎉</span>
+          <span data-i18n="modal.ok">Квест открыт! Ссылку и код входа отправили на указанный контакт.</span>
+        </div>
+      </form>
+    </div>
+  </div>
+</body>
+
+</html>
