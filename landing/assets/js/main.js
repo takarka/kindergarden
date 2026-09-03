@@ -95,57 +95,13 @@
     });
   });
 
-  /* ----------------------------------------------------- hero: робот и сцена */
+  /* ----------------------------------------------------- hero: сцена и карточки */
 
+  // Сам робот и его 3D-окружение живут в assets/js/hero-scene.js (WebGL/Three.js).
+  // main.js отвечает только за состояние режима и 2D-карточки результатов;
+  // о смене режима WebGL-сцена узнаёт через CustomEvent "aqyl:mode".
   var scene = $("#scene");
-  var stage = $("#stage");
-  var robot = $("#robot");
-  var pupils = $$(".robot__pupil", robot);
   var cards = { draw: $("#cardDraw"), story: $("#cardStory"), game: $("#cardGame") };
-
-  // Взгляд следит за курсором/пальцем, корпус слегка наклоняется (лёгкий 3D).
-  var pointer = { x: 0, y: 0, active: false };
-  var rafPending = false;
-
-  function trackFrame() {
-    rafPending = false;
-    var box = stage.getBoundingClientRect();
-    if (!box.width) return;
-    var nx = Math.max(-1, Math.min(1, (pointer.x - (box.left + box.width / 2)) / (box.width / 2)));
-    var ny = Math.max(-1, Math.min(1, (pointer.y - (box.top + box.height / 2)) / (box.height / 2)));
-
-    pupils.forEach(function (p) {
-      p.setAttribute("transform", "translate(" + (nx * 6).toFixed(2) + "," + (ny * 5).toFixed(2) + ")");
-    });
-    if (!reduceMotion) {
-      stage.style.transform = "rotateY(" + (nx * 7).toFixed(2) + "deg) rotateX(" + (-ny * 5).toFixed(2) + "deg)";
-    }
-  }
-
-  function onPointer(e) {
-    pointer.x = e.clientX;
-    pointer.y = e.clientY;
-    if (!rafPending) { rafPending = true; requestAnimationFrame(trackFrame); }
-  }
-
-  idle(function () {
-    window.addEventListener("pointermove", onPointer, { passive: true });
-    window.addEventListener("pointerdown", onPointer, { passive: true });
-    document.addEventListener("pointerleave", function () {
-      pupils.forEach(function (p) { p.setAttribute("transform", "translate(0,0)"); });
-      stage.style.transform = "";
-    });
-
-    if (!reduceMotion) {
-      (function blink() {
-        setTimeout(function () {
-          robot.classList.add("is-blinking");
-          setTimeout(function () { robot.classList.remove("is-blinking"); }, 130);
-          blink();
-        }, 2600 + Math.random() * 3600);
-      })();
-    }
-  });
 
   /* --- режимы: рисовать / сочинять / создавать игру --- */
 
@@ -202,6 +158,8 @@
     if (next === "draw") paintArt();
     if (next === "story") typeStory(); else clearInterval(storyTimer);
     if (next === "game") buildPix();
+
+    window.dispatchEvent(new CustomEvent("aqyl:mode", { detail: { mode: next } }));
   }
 
   $$("[data-mode-btn]").forEach(function (btn) {
